@@ -1,0 +1,7 @@
+build/
+*.pyc
+__pycache__/
+*.so
+.vscode/
+dist/
+torch_spu.egg-info/
