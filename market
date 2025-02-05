@@ -1,0 +1,4036 @@
+{
+    "Ships": {
+        "marketGroupID": 4,
+        "children": {
+            "Shuttles": {
+                "marketGroupID": 391,
+                "children": {
+                    "Amarr": {
+                        "marketGroupID": 393
+                    },
+                    "Minmatar": {
+                        "marketGroupID": 394
+                    },
+                    "Gallente": {
+                        "marketGroupID": 395
+                    },
+                    "Caldari": {
+                        "marketGroupID": 396
+                    },
+                    "Faction Shuttles": {
+                        "marketGroupID": 1631
+                    }
+                }
+            },
+            "Frigates": {
+                "marketGroupID": 1361,
+                "children": {
+                    "Standard Frigates": {
+                        "marketGroupID": 5,
+                        "children": {
+                            "Caldari": {
+                                "marketGroupID": 61
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 64
+                            },
+                            "Amarr": {
+                                "marketGroupID": 72
+                            },
+                            "Gallente": {
+                                "marketGroupID": 77
+                            },
+                            "ORE": {
+                                "marketGroupID": 1616
+                            }
+                        }
+                    },
+                    "Faction Frigates": {
+                        "marketGroupID": 1362,
+                        "children": {
+                            "Pirate Faction": {
+                                "marketGroupID": 1365
+                            },
+                            "Navy Faction": {
+                                "marketGroupID": 1366
+                            },
+                            "EDENCOM": {
+                                "marketGroupID": 3536
+                            }
+                        }
+                    },
+                    "Advanced Frigates": {
+                        "marketGroupID": 1364,
+                        "children": {
+                            "Interceptors": {
+                                "marketGroupID": 399,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 400
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 401
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 402
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 403
+                                    }
+                                }
+                            },
+                            "Covert Ops": {
+                                "marketGroupID": 420,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 421
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 422
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 423
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 424
+                                    }
+                                }
+                            },
+                            "Assault Frigates": {
+                                "marketGroupID": 432,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 433
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 434
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 435
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 436
+                                    },
+                                    "Triglavian": {
+                                        "marketGroupID": 2536
+                                    }
+                                }
+                            },
+                            "Electronic Attack Frigates": {
+                                "marketGroupID": 1065,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 1066
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 1067
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 1068
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 1069
+                                    }
+                                }
+                            },
+                            "Expedition Frigates": {
+                                "marketGroupID": 1924
+                            },
+                            "Logistics Frigates": {
+                                "marketGroupID": 2146,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 2147
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 2148
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 2149
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 2150
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Precursor Frigates": {
+                        "marketGroupID": 2425,
+                        "children": {
+                            "Triglavian": {
+                                "marketGroupID": 2426
+                            }
+                        }
+                    }
+                }
+            },
+            "Cruisers": {
+                "marketGroupID": 1367,
+                "children": {
+                    "Standard Cruisers": {
+                        "marketGroupID": 6,
+                        "children": {
+                            "Minmatar": {
+                                "marketGroupID": 73
+                            },
+                            "Amarr": {
+                                "marketGroupID": 74
+                            },
+                            "Caldari": {
+                                "marketGroupID": 75
+                            },
+                            "Gallente": {
+                                "marketGroupID": 76
+                            }
+                        }
+                    },
+                    "Advanced Cruisers": {
+                        "marketGroupID": 1368,
+                        "children": {
+                            "Logistics": {
+                                "marketGroupID": 437,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 438
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 439
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 440
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 441
+                                    },
+                                    "Triglavian": {
+                                        "marketGroupID": 2526
+                                    }
+                                }
+                            },
+                            "Heavy Assault Cruisers": {
+                                "marketGroupID": 448,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 449
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 450
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 451
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 452
+                                    },
+                                    "Triglavian": {
+                                        "marketGroupID": 2535
+                                    }
+                                }
+                            },
+                            "Recon Ships": {
+                                "marketGroupID": 824,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 827
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 830
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 833
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 836
+                                    }
+                                }
+                            },
+                            "Heavy Interdiction Cruisers": {
+                                "marketGroupID": 1070,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 1071
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 1072
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 1073
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 1074
+                                    }
+                                }
+                            },
+                            "Strategic Cruisers": {
+                                "marketGroupID": 1138,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 1139
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 1140
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 1141
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 1142
+                                    }
+                                }
+                            },
+                            "Flag Cruisers": {
+                                "marketGroupID": 2416,
+                                "children": {
+                                    "CONCORD": {
+                                        "marketGroupID": 2417
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Faction Cruisers": {
+                        "marketGroupID": 1369,
+                        "children": {
+                            "Navy Faction": {
+                                "marketGroupID": 1370
+                            },
+                            "Pirate Faction": {
+                                "marketGroupID": 1371
+                            },
+                            "EDENCOM": {
+                                "marketGroupID": 3537
+                            }
+                        }
+                    },
+                    "Precursor Cruisers": {
+                        "marketGroupID": 2427,
+                        "children": {
+                            "Triglavian": {
+                                "marketGroupID": 2428
+                            }
+                        }
+                    }
+                }
+            },
+            "Destroyers": {
+                "marketGroupID": 1372,
+                "children": {
+                    "Standard Destroyers": {
+                        "marketGroupID": 464,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 465
+                            },
+                            "Caldari": {
+                                "marketGroupID": 466
+                            },
+                            "Gallente": {
+                                "marketGroupID": 467
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 468
+                            }
+                        }
+                    },
+                    "Advanced Destroyers": {
+                        "marketGroupID": 1373,
+                        "children": {
+                            "Interdictors": {
+                                "marketGroupID": 823,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 826
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 829
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 832
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 835
+                                    }
+                                }
+                            },
+                            "Tactical Destroyers": {
+                                "marketGroupID": 1951,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 1952
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 1953
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 2021
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 2034
+                                    }
+                                }
+                            },
+                            "Command Destroyers": {
+                                "marketGroupID": 2125,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 2126
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 2131
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 2132
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 2133
+                                    },
+                                    "Triglavian": {
+                                        "marketGroupID": 2537
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Precursor Destroyers": {
+                        "marketGroupID": 2522,
+                        "children": {
+                            "Triglavian": {
+                                "marketGroupID": 2523
+                            }
+                        }
+                    },
+                    "Faction Destroyers": {
+                        "marketGroupID": 3480,
+                        "children": {
+                            "Navy Faction": {
+                                "marketGroupID": 3481
+                            },
+                            "Pirate Faction": {
+                                "marketGroupID": 3531
+                            }
+                        }
+                    }
+                }
+            },
+            "Battlecruisers": {
+                "marketGroupID": 1374,
+                "children": {
+                    "Standard Battlecruisers": {
+                        "marketGroupID": 469,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 470
+                            },
+                            "Caldari": {
+                                "marketGroupID": 471
+                            },
+                            "Gallente": {
+                                "marketGroupID": 472
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 473
+                            }
+                        }
+                    },
+                    "Advanced Battlecruisers": {
+                        "marketGroupID": 1375,
+                        "children": {
+                            "Command Ships": {
+                                "marketGroupID": 822,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 825
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 828
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 831
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 834
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Faction Battlecruisers": {
+                        "marketGroupID": 1703,
+                        "children": {
+                            "Navy Faction": {
+                                "marketGroupID": 1704
+                            },
+                            "Pirate Faction": {
+                                "marketGroupID": 3534
+                            }
+                        }
+                    },
+                    "Precursor Battlecruisers": {
+                        "marketGroupID": 2524,
+                        "children": {
+                            "Triglavian": {
+                                "marketGroupID": 2525
+                            }
+                        }
+                    }
+                }
+            },
+            "Battleships": {
+                "marketGroupID": 1376,
+                "children": {
+                    "Standard Battleships": {
+                        "marketGroupID": 7,
+                        "children": {
+                            "Minmatar": {
+                                "marketGroupID": 78
+                            },
+                            "Amarr": {
+                                "marketGroupID": 79
+                            },
+                            "Caldari": {
+                                "marketGroupID": 80
+                            },
+                            "Gallente": {
+                                "marketGroupID": 81
+                            }
+                        }
+                    },
+                    "Advanced Battleships": {
+                        "marketGroupID": 1377,
+                        "children": {
+                            "Black Ops": {
+                                "marketGroupID": 1075,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 1076
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 1077
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 1078
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 1079
+                                    }
+                                }
+                            },
+                            "Marauders": {
+                                "marketGroupID": 1080,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 1081
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 1082
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 1083
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 1084
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Faction Battleships": {
+                        "marketGroupID": 1378,
+                        "children": {
+                            "Navy Faction": {
+                                "marketGroupID": 1379
+                            },
+                            "Pirate Faction": {
+                                "marketGroupID": 1380
+                            },
+                            "EDENCOM": {
+                                "marketGroupID": 3538
+                            }
+                        }
+                    },
+                    "Precursor Battleships": {
+                        "marketGroupID": 2429,
+                        "children": {
+                            "Triglavian": {
+                                "marketGroupID": 2430
+                            }
+                        }
+                    }
+                }
+            },
+            "Capital Ships": {
+                "marketGroupID": 1381,
+                "children": {
+                    "Dreadnoughts": {
+                        "marketGroupID": 761,
+                        "children": {
+                            "Faction Dreadnoughts": {
+                                "marketGroupID": 2288,
+                                "children": {
+                                    "Pirate Faction": {
+                                        "marketGroupID": 3483
+                                    },
+                                    "Navy Faction": {
+                                        "marketGroupID": 3484
+                                    }
+                                }
+                            },
+                            "Precursor Dreadnoughts": {
+                                "marketGroupID": 3508,
+                                "children": {
+                                    "Triglavian": {
+                                        "marketGroupID": 2690
+                                    }
+                                }
+                            },
+                            "Standard Dreadnoughts": {
+                                "marketGroupID": 3509,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 762
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 763
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 764
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 765
+                                    }
+                                }
+                            },
+                            "Advanced Dreadnoughts": {
+                                "marketGroupID": 3510,
+                                "children": {
+                                    "Lancer Dreadnoughts": {
+                                        "marketGroupID": 3511,
+                                        "children": {
+                                            "Amarr": {
+                                                "marketGroupID": 3512
+                                            },
+                                            "Caldari": {
+                                                "marketGroupID": 3513
+                                            },
+                                            "Minmatar": {
+                                                "marketGroupID": 3514
+                                            },
+                                            "Gallente": {
+                                                "marketGroupID": 3515
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Freighters": {
+                        "marketGroupID": 766,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 767
+                            },
+                            "Caldari": {
+                                "marketGroupID": 768
+                            },
+                            "Gallente": {
+                                "marketGroupID": 769
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 770
+                            },
+                            "ORE": {
+                                "marketGroupID": 1950
+                            },
+                            "Upwell": {
+                                "marketGroupID": 3580
+                            }
+                        }
+                    },
+                    "Titans": {
+                        "marketGroupID": 812,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 813
+                            },
+                            "Caldari": {
+                                "marketGroupID": 814
+                            },
+                            "Gallente": {
+                                "marketGroupID": 815
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 816
+                            },
+                            "Faction Titans": {
+                                "marketGroupID": 2287
+                            }
+                        }
+                    },
+                    "Carriers": {
+                        "marketGroupID": 817,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 818
+                            },
+                            "Caldari": {
+                                "marketGroupID": 819
+                            },
+                            "Gallente": {
+                                "marketGroupID": 820
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 821
+                            },
+                            "Faction Carrier": {
+                                "marketGroupID": 1392
+                            }
+                        }
+                    },
+                    "Capital Industrial Ships": {
+                        "marketGroupID": 1047,
+                        "children": {
+                            "ORE": {
+                                "marketGroupID": 1048
+                            }
+                        }
+                    },
+                    "Jump Freighters": {
+                        "marketGroupID": 1089,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 1090
+                            },
+                            "Caldari": {
+                                "marketGroupID": 1091
+                            },
+                            "Gallente": {
+                                "marketGroupID": 1092
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 1093
+                            }
+                        }
+                    },
+                    "Force Auxiliaries": {
+                        "marketGroupID": 2271,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 2272
+                            },
+                            "Caldari": {
+                                "marketGroupID": 2273
+                            },
+                            "Gallente": {
+                                "marketGroupID": 2274
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 2275
+                            },
+                            "Faction Force Auxiliaries": {
+                                "marketGroupID": 2357
+                            }
+                        }
+                    }
+                }
+            },
+            "Haulers and Industrial Ships": {
+                "marketGroupID": 1382,
+                "children": {
+                    "Standard Haulers": {
+                        "marketGroupID": 8,
+                        "children": {
+                            "Minmatar": {
+                                "marketGroupID": 82
+                            },
+                            "Gallente": {
+                                "marketGroupID": 83
+                            },
+                            "Caldari": {
+                                "marketGroupID": 84
+                            },
+                            "Amarr": {
+                                "marketGroupID": 85
+                            },
+                            "ORE": {
+                                "marketGroupID": 1390
+                            },
+                            "Upwell": {
+                                "marketGroupID": 3577
+                            }
+                        }
+                    },
+                    "Advanced Haulers": {
+                        "marketGroupID": 1385,
+                        "children": {
+                            "Transport Ships": {
+                                "marketGroupID": 629,
+                                "children": {
+                                    "Amarr": {
+                                        "marketGroupID": 630
+                                    },
+                                    "Caldari": {
+                                        "marketGroupID": 631
+                                    },
+                                    "Gallente": {
+                                        "marketGroupID": 632
+                                    },
+                                    "Minmatar": {
+                                        "marketGroupID": 633
+                                    },
+                                    "Upwell": {
+                                        "marketGroupID": 3578
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Industrial Command Ships": {
+                        "marketGroupID": 2335,
+                        "children": {
+                            "ORE": {
+                                "marketGroupID": 2336
+                            }
+                        }
+                    }
+                }
+            },
+            "Mining Barges": {
+                "marketGroupID": 1384,
+                "children": {
+                    "Mining Barges": {
+                        "marketGroupID": 494
+                    },
+                    "Exhumers": {
+                        "marketGroupID": 874
+                    }
+                }
+            },
+            "Special Edition Ships": {
+                "marketGroupID": 1612,
+                "children": {
+                    "Special Edition Industrial Ships": {
+                        "marketGroupID": 1614
+                    },
+                    "Special Edition Shuttles": {
+                        "marketGroupID": 1618
+                    },
+                    "Special Edition Frigates": {
+                        "marketGroupID": 1619
+                    },
+                    "Special Edition Battleships": {
+                        "marketGroupID": 1620
+                    },
+                    "Special Edition Heavy Assault Cruisers": {
+                        "marketGroupID": 1621
+                    },
+                    "Special Edition Assault Frigates": {
+                        "marketGroupID": 1623
+                    },
+                    "Special Edition Logistics": {
+                        "marketGroupID": 1624
+                    },
+                    "Special Edition Battlecruisers": {
+                        "marketGroupID": 1698
+                    },
+                    "Special Edition Cruisers": {
+                        "marketGroupID": 1699
+                    },
+                    "Special Edition Recon Ships": {
+                        "marketGroupID": 1837
+                    },
+                    "Special Edition Covert Ops": {
+                        "marketGroupID": 1838
+                    },
+                    "Special Edition Interceptors": {
+                        "marketGroupID": 1932
+                    },
+                    "Special Edition Heavy Interdiction Cruisers": {
+                        "marketGroupID": 2115
+                    },
+                    "Special Edition Destroyers": {
+                        "marketGroupID": 2350
+                    },
+                    "Special Edition Corvettes": {
+                        "marketGroupID": 2702
+                    },
+                    "Special Edition Electronic Attack Frigates": {
+                        "marketGroupID": 2819
+                    }
+                }
+            },
+            "Corvettes": {
+                "marketGroupID": 1815,
+                "children": {
+                    "Amarr": {
+                        "marketGroupID": 1816
+                    },
+                    "Caldari": {
+                        "marketGroupID": 1817
+                    },
+                    "Gallente": {
+                        "marketGroupID": 1818
+                    },
+                    "Minmatar": {
+                        "marketGroupID": 1819
+                    }
+                }
+            }
+        }
+    },
+    "Ship Equipment": {
+        "marketGroupID": 9,
+        "children": {
+            "Turrets & Launchers": {
+                "marketGroupID": 10,
+                "children": {
+                    "Hybrid Turrets": {
+                        "marketGroupID": 86,
+                        "children": {
+                            "Railguns": {
+                                "marketGroupID": 555,
+                                "children": {
+                                    "Small": {
+                                        "marketGroupID": 564
+                                    },
+                                    "Medium": {
+                                        "marketGroupID": 565
+                                    },
+                                    "Large": {
+                                        "marketGroupID": 566
+                                    },
+                                    "Extra Large": {
+                                        "marketGroupID": 772
+                                    }
+                                }
+                            },
+                            "Blasters": {
+                                "marketGroupID": 556,
+                                "children": {
+                                    "Small": {
+                                        "marketGroupID": 561
+                                    },
+                                    "Medium": {
+                                        "marketGroupID": 562
+                                    },
+                                    "Large": {
+                                        "marketGroupID": 563
+                                    },
+                                    "Extra Large": {
+                                        "marketGroupID": 771
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Projectile Turrets": {
+                        "marketGroupID": 87,
+                        "children": {
+                            "Autocannons": {
+                                "marketGroupID": 559,
+                                "children": {
+                                    "Small": {
+                                        "marketGroupID": 574
+                                    },
+                                    "Medium": {
+                                        "marketGroupID": 575
+                                    },
+                                    "Large": {
+                                        "marketGroupID": 576
+                                    },
+                                    "Extra Large": {
+                                        "marketGroupID": 776
+                                    }
+                                }
+                            },
+                            "Artillery Cannons": {
+                                "marketGroupID": 560,
+                                "children": {
+                                    "Small": {
+                                        "marketGroupID": 577
+                                    },
+                                    "Medium": {
+                                        "marketGroupID": 578
+                                    },
+                                    "Large": {
+                                        "marketGroupID": 579
+                                    },
+                                    "Extra Large": {
+                                        "marketGroupID": 775
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Energy Turrets": {
+                        "marketGroupID": 88,
+                        "children": {
+                            "Beam Lasers": {
+                                "marketGroupID": 557,
+                                "children": {
+                                    "Small": {
+                                        "marketGroupID": 567
+                                    },
+                                    "Medium": {
+                                        "marketGroupID": 568
+                                    },
+                                    "Large": {
+                                        "marketGroupID": 569
+                                    },
+                                    "Extra Large": {
+                                        "marketGroupID": 773
+                                    }
+                                }
+                            },
+                            "Pulse Lasers": {
+                                "marketGroupID": 558,
+                                "children": {
+                                    "Small": {
+                                        "marketGroupID": 570
+                                    },
+                                    "Medium": {
+                                        "marketGroupID": 572
+                                    },
+                                    "Large": {
+                                        "marketGroupID": 573
+                                    },
+                                    "Extra Large": {
+                                        "marketGroupID": 774
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Missile Launchers": {
+                        "marketGroupID": 140,
+                        "children": {
+                            "Rocket Launchers": {
+                                "marketGroupID": 639
+                            },
+                            "Light Missile Launchers": {
+                                "marketGroupID": 640
+                            },
+                            "Rapid Light Missile Launchers": {
+                                "marketGroupID": 641
+                            },
+                            "Heavy Launchers": {
+                                "marketGroupID": 642
+                            },
+                            "Cruise Launchers": {
+                                "marketGroupID": 643
+                            },
+                            "Torpedo Launchers": {
+                                "marketGroupID": 644
+                            },
+                            "XL Launchers": {
+                                "marketGroupID": 777
+                            },
+                            "Heavy Assault Launchers": {
+                                "marketGroupID": 974
+                            },
+                            "Rapid Heavy Missile Launchers": {
+                                "marketGroupID": 1827
+                            },
+                            "Rapid Torpedo Launchers": {
+                                "marketGroupID": 2247
+                            },
+                            "Defender Launchers": {
+                                "marketGroupID": 2351
+                            }
+                        }
+                    },
+                    "Weapon Upgrades": {
+                        "marketGroupID": 143,
+                        "children": {
+                            "Ballistic Control Systems": {
+                                "marketGroupID": 645
+                            },
+                            "Gyrostabilizers": {
+                                "marketGroupID": 646
+                            },
+                            "Heat Sinks": {
+                                "marketGroupID": 647
+                            },
+                            "Magnetic Field Stabilizers": {
+                                "marketGroupID": 648
+                            },
+                            "Tracking Computers": {
+                                "marketGroupID": 706
+                            },
+                            "Tracking Enhancers": {
+                                "marketGroupID": 707
+                            },
+                            "Remote Tracking Computers": {
+                                "marketGroupID": 708
+                            },
+                            "Siege Modules": {
+                                "marketGroupID": 801
+                            },
+                            "Missile Guidance Computers": {
+                                "marketGroupID": 2032
+                            },
+                            "Missile Guidance Enhancers": {
+                                "marketGroupID": 2033
+                            },
+                            "Entropic Radiation Sinks": {
+                                "marketGroupID": 2471
+                            },
+                            "Vorton Tuning Systems": {
+                                "marketGroupID": 2740
+                            }
+                        }
+                    },
+                    "Superweapons": {
+                        "marketGroupID": 912,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 2267
+                            },
+                            "Caldari": {
+                                "marketGroupID": 2268
+                            },
+                            "Gallente": {
+                                "marketGroupID": 2269
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 2270
+                            },
+                            "Non-Racial": {
+                                "marketGroupID": 2276
+                            },
+                            "ORE": {
+                                "marketGroupID": 2325
+                            }
+                        }
+                    },
+                    "Bomb Launchers": {
+                        "marketGroupID": 1014
+                    },
+                    "Precursor Turrets": {
+                        "marketGroupID": 2431,
+                        "children": {
+                            "Entropic Disintegrators": {
+                                "marketGroupID": 2432,
+                                "children": {
+                                    "Small": {
+                                        "marketGroupID": 2433
+                                    },
+                                    "Medium": {
+                                        "marketGroupID": 2434
+                                    },
+                                    "Large": {
+                                        "marketGroupID": 2435
+                                    },
+                                    "Extra Large": {
+                                        "marketGroupID": 2691
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Vorton Projectors": {
+                        "marketGroupID": 2741,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 2742
+                            },
+                            "Medium": {
+                                "marketGroupID": 2743
+                            },
+                            "Large": {
+                                "marketGroupID": 2744
+                            }
+                        }
+                    },
+                    "Breacher Pod Launchers": {
+                        "marketGroupID": 3726
+                    }
+                }
+            },
+            "Hull & Armor": {
+                "marketGroupID": 14,
+                "children": {
+                    "Armor Plates": {
+                        "marketGroupID": 133,
+                        "children": {
+                            "100mm Armor Plate": {
+                                "marketGroupID": 1672
+                            },
+                            "200mm Armor Plate": {
+                                "marketGroupID": 1673
+                            },
+                            "400mm Armor Plate": {
+                                "marketGroupID": 1674
+                            },
+                            "800mm Armor Plate": {
+                                "marketGroupID": 1675
+                            },
+                            "1600mm Armor Plate": {
+                                "marketGroupID": 1676
+                            },
+                            "25000mm Armor Plate": {
+                                "marketGroupID": 2240
+                            }
+                        }
+                    },
+                    "Armor Repairers": {
+                        "marketGroupID": 134,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 1049
+                            },
+                            "Medium": {
+                                "marketGroupID": 1050
+                            },
+                            "Large": {
+                                "marketGroupID": 1051
+                            },
+                            "Capital": {
+                                "marketGroupID": 1052
+                            }
+                        }
+                    },
+                    "Hull Upgrades": {
+                        "marketGroupID": 135,
+                        "children": {
+                            "Reinforced Bulkheads": {
+                                "marketGroupID": 1195
+                            },
+                            "Nanofiber Internal Structures": {
+                                "marketGroupID": 1196
+                            },
+                            "Expanded Cargoholds": {
+                                "marketGroupID": 1197
+                            }
+                        }
+                    },
+                    "Armor Hardeners": {
+                        "marketGroupID": 535,
+                        "children": {
+                            "Reactive Armor Hardeners": {
+                                "marketGroupID": 1416
+                            },
+                            "Thermal Armor Hardeners": {
+                                "marketGroupID": 1678
+                            },
+                            "Kinetic Armor Hardeners": {
+                                "marketGroupID": 1679
+                            },
+                            "Explosive Armor Hardeners": {
+                                "marketGroupID": 1680
+                            },
+                            "EM Armor Hardeners": {
+                                "marketGroupID": 1681
+                            },
+                            "Scriptable Armor Hardeners": {
+                                "marketGroupID": 2245
+                            }
+                        }
+                    },
+                    "Remote Armor Repairers": {
+                        "marketGroupID": 537,
+                        "children": {
+                            "Capital": {
+                                "marketGroupID": 1056
+                            },
+                            "Large": {
+                                "marketGroupID": 1057
+                            },
+                            "Medium": {
+                                "marketGroupID": 1058
+                            },
+                            "Small": {
+                                "marketGroupID": 1059
+                            }
+                        }
+                    },
+                    "Hull Repairers": {
+                        "marketGroupID": 538,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 1053
+                            },
+                            "Medium": {
+                                "marketGroupID": 1054
+                            },
+                            "Large": {
+                                "marketGroupID": 1055
+                            },
+                            "Capital": {
+                                "marketGroupID": 2244
+                            }
+                        }
+                    },
+                    "Armor Resistance Coatings": {
+                        "marketGroupID": 540,
+                        "children": {
+                            "Thermal Coatings": {
+                                "marketGroupID": 1665
+                            },
+                            "Kinetic Coatings": {
+                                "marketGroupID": 1666
+                            },
+                            "Explosive Coatings": {
+                                "marketGroupID": 1667
+                            },
+                            "EM Coatings": {
+                                "marketGroupID": 1668
+                            },
+                            "Multispectrum Coatings": {
+                                "marketGroupID": 1670
+                            }
+                        }
+                    },
+                    "Energized Armor Resistance Membranes": {
+                        "marketGroupID": 541,
+                        "children": {
+                            "Explosive Energized Membranes": {
+                                "marketGroupID": 1682
+                            },
+                            "Thermal Energized Membranes": {
+                                "marketGroupID": 1683
+                            },
+                            "EM Energized Membranes": {
+                                "marketGroupID": 1684
+                            },
+                            "Kinetic Energized Membranes": {
+                                "marketGroupID": 1685
+                            },
+                            "Multispectrum Energized Membranes": {
+                                "marketGroupID": 1686
+                            }
+                        }
+                    },
+                    "Damage Controls": {
+                        "marketGroupID": 615
+                    },
+                    "Remote Hull Repairers": {
+                        "marketGroupID": 1018,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 1060
+                            },
+                            "Medium": {
+                                "marketGroupID": 1061
+                            },
+                            "Large": {
+                                "marketGroupID": 1062
+                            },
+                            "Capital": {
+                                "marketGroupID": 1063
+                            }
+                        }
+                    },
+                    "Layered Armor Coatings": {
+                        "marketGroupID": 1669
+                    },
+                    "Layered Energized Armor Membranes": {
+                        "marketGroupID": 1687
+                    },
+                    "Mass Entanglers": {
+                        "marketGroupID": 2509
+                    },
+                    "Mutadaptive Remote Armor Repairers": {
+                        "marketGroupID": 2527
+                    }
+                }
+            },
+            "Propulsion": {
+                "marketGroupID": 52,
+                "children": {
+                    "Microwarpdrives": {
+                        "marketGroupID": 131
+                    },
+                    "Propulsion Upgrades": {
+                        "marketGroupID": 132,
+                        "children": {
+                            "Inertial Stabilizers": {
+                                "marketGroupID": 1086
+                            },
+                            "Overdrives": {
+                                "marketGroupID": 1087
+                            },
+                            "Warp Core Stabilizers": {
+                                "marketGroupID": 1088
+                            },
+                            "Warp Accelerators": {
+                                "marketGroupID": 1931
+                            },
+                            "Jump Economizers": {
+                                "marketGroupID": 1941
+                            },
+                            "Interdiction Nullifiers": {
+                                "marketGroupID": 2783
+                            }
+                        }
+                    },
+                    "Afterburners": {
+                        "marketGroupID": 542
+                    },
+                    "Micro Jump Drives": {
+                        "marketGroupID": 1650
+                    },
+                    "Micro Jump Field Generators": {
+                        "marketGroupID": 2135
+                    }
+                }
+            },
+            "Smartbombs": {
+                "marketGroupID": 141,
+                "children": {
+                    "Micro": {
+                        "marketGroupID": 380
+                    },
+                    "Large": {
+                        "marketGroupID": 381
+                    },
+                    "Small": {
+                        "marketGroupID": 382
+                    },
+                    "Medium": {
+                        "marketGroupID": 383
+                    }
+                }
+            },
+            "Shield": {
+                "marketGroupID": 554,
+                "children": {
+                    "Shield Rechargers": {
+                        "marketGroupID": 126
+                    },
+                    "Remote Shield Boosters": {
+                        "marketGroupID": 128,
+                        "children": {
+                            "Capital": {
+                                "marketGroupID": 600
+                            },
+                            "Large": {
+                                "marketGroupID": 601
+                            },
+                            "Medium": {
+                                "marketGroupID": 602
+                            },
+                            "Small": {
+                                "marketGroupID": 603
+                            },
+                            "Micro": {
+                                "marketGroupID": 604
+                            }
+                        }
+                    },
+                    "Shield Resistance Amplifiers": {
+                        "marketGroupID": 550,
+                        "children": {
+                            "Thermal Shield Amplifiers": {
+                                "marketGroupID": 1688
+                            },
+                            "Kinetic Shield Amplifiers": {
+                                "marketGroupID": 1689
+                            },
+                            "Explosive Shield Amplifiers": {
+                                "marketGroupID": 1690
+                            },
+                            "EM Shield Amplifiers": {
+                                "marketGroupID": 1691
+                            }
+                        }
+                    },
+                    "Shield Extenders": {
+                        "marketGroupID": 551,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 605
+                            },
+                            "Medium": {
+                                "marketGroupID": 606
+                            },
+                            "Large": {
+                                "marketGroupID": 608
+                            },
+                            "Capital": {
+                                "marketGroupID": 2241
+                            }
+                        }
+                    },
+                    "Shield Boosters": {
+                        "marketGroupID": 552,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 609
+                            },
+                            "Medium": {
+                                "marketGroupID": 610
+                            },
+                            "Large": {
+                                "marketGroupID": 611
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 612
+                            },
+                            "Boost Amplifiers": {
+                                "marketGroupID": 613
+                            },
+                            "Capital": {
+                                "marketGroupID": 778
+                            }
+                        }
+                    },
+                    "Shield Hardeners": {
+                        "marketGroupID": 553,
+                        "children": {
+                            "Thermal Shield Hardeners": {
+                                "marketGroupID": 1692
+                            },
+                            "Kinetic Shield Hardeners": {
+                                "marketGroupID": 1693
+                            },
+                            "Explosive Shield Hardeners": {
+                                "marketGroupID": 1694
+                            },
+                            "EM Shield Hardeners": {
+                                "marketGroupID": 1695
+                            },
+                            "Multispectrum Shield Hardeners": {
+                                "marketGroupID": 1696
+                            },
+                            "Scriptable Shield Hardeners": {
+                                "marketGroupID": 2246
+                            }
+                        }
+                    },
+                    "Shield Flux Coils": {
+                        "marketGroupID": 687
+                    },
+                    "Shield Power Relays": {
+                        "marketGroupID": 688
+                    }
+                }
+            },
+            "Engineering Equipment": {
+                "marketGroupID": 655,
+                "children": {
+                    "Power Diagnostic Systems": {
+                        "marketGroupID": 658
+                    },
+                    "Reactor Control Units": {
+                        "marketGroupID": 659
+                    },
+                    "Auxiliary Power Controls": {
+                        "marketGroupID": 660
+                    },
+                    "Energy Neutralizers": {
+                        "marketGroupID": 661,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 689
+                            },
+                            "Medium": {
+                                "marketGroupID": 690
+                            },
+                            "Heavy": {
+                                "marketGroupID": 691
+                            },
+                            "Capital": {
+                                "marketGroupID": 2250
+                            }
+                        }
+                    },
+                    "Energy Nosferatu": {
+                        "marketGroupID": 662,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 692
+                            },
+                            "Medium": {
+                                "marketGroupID": 693
+                            },
+                            "Heavy": {
+                                "marketGroupID": 694
+                            },
+                            "Capital": {
+                                "marketGroupID": 2251
+                            }
+                        }
+                    },
+                    "Remote Capacitor Transmitters": {
+                        "marketGroupID": 663,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 695
+                            },
+                            "Medium": {
+                                "marketGroupID": 696
+                            },
+                            "Large": {
+                                "marketGroupID": 697
+                            },
+                            "Capital": {
+                                "marketGroupID": 910
+                            }
+                        }
+                    },
+                    "Capacitor Batteries": {
+                        "marketGroupID": 664,
+                        "children": {
+                            "Micro": {
+                                "marketGroupID": 702
+                            },
+                            "Small": {
+                                "marketGroupID": 703
+                            },
+                            "Medium": {
+                                "marketGroupID": 704
+                            },
+                            "Large": {
+                                "marketGroupID": 705
+                            },
+                            "Capital": {
+                                "marketGroupID": 2242
+                            }
+                        }
+                    },
+                    "Capacitor Rechargers": {
+                        "marketGroupID": 665
+                    },
+                    "Capacitor Flux Coils": {
+                        "marketGroupID": 666
+                    },
+                    "Capacitor Power Relays": {
+                        "marketGroupID": 667
+                    },
+                    "Capacitor Boosters": {
+                        "marketGroupID": 668,
+                        "children": {
+                            "Micro": {
+                                "marketGroupID": 698
+                            },
+                            "Small": {
+                                "marketGroupID": 699
+                            },
+                            "Medium": {
+                                "marketGroupID": 700
+                            },
+                            "Heavy": {
+                                "marketGroupID": 701
+                            },
+                            "Capital": {
+                                "marketGroupID": 2243
+                            }
+                        }
+                    }
+                }
+            },
+            "Electronics and Sensor Upgrades": {
+                "marketGroupID": 656,
+                "children": {
+                    "Signal Amplifiers": {
+                        "marketGroupID": 669
+                    },
+                    "Automated Targeting Systems": {
+                        "marketGroupID": 670
+                    },
+                    "Sensor Boosters": {
+                        "marketGroupID": 671
+                    },
+                    "Passive Targeting Systems": {
+                        "marketGroupID": 672
+                    },
+                    "Remote Sensor Boosters": {
+                        "marketGroupID": 673
+                    },
+                    "Cloaking Devices": {
+                        "marketGroupID": 675
+                    },
+                    "CPU Upgrades": {
+                        "marketGroupID": 676
+                    },
+                    "Tractor Beams": {
+                        "marketGroupID": 872
+                    }
+                }
+            },
+            "Electronic Warfare": {
+                "marketGroupID": 657,
+                "children": {
+                    "Electronic Counter Measures": {
+                        "marketGroupID": 677,
+                        "children": {
+                            "Magnetometric Jammers": {
+                                "marketGroupID": 715
+                            },
+                            "Ladar Jammers": {
+                                "marketGroupID": 716
+                            },
+                            "Gravimetric Jammers": {
+                                "marketGroupID": 717
+                            },
+                            "Radar Jammers": {
+                                "marketGroupID": 718
+                            },
+                            "Multi Spectrum Jammers": {
+                                "marketGroupID": 719
+                            },
+                            "Signal Distortion Amplifier": {
+                                "marketGroupID": 967
+                            }
+                        }
+                    },
+                    "ECM Bursts": {
+                        "marketGroupID": 678
+                    },
+                    "Remote Sensor Dampeners": {
+                        "marketGroupID": 679
+                    },
+                    "Weapon Disruptors": {
+                        "marketGroupID": 680
+                    },
+                    "Sensor Backup Arrays": {
+                        "marketGroupID": 681,
+                        "children": {
+                            "Gravimetric Backup Arrays": {
+                                "marketGroupID": 720
+                            },
+                            "Ladar Backup Arrays": {
+                                "marketGroupID": 721
+                            },
+                            "Radar Backup Arrays": {
+                                "marketGroupID": 722
+                            },
+                            "Magnetometric Backup Arrays": {
+                                "marketGroupID": 723
+                            },
+                            "Multi-Frequency Backup Arrays": {
+                                "marketGroupID": 724
+                            }
+                        }
+                    },
+                    "Stasis Webifiers": {
+                        "marketGroupID": 683
+                    },
+                    "ECCM": {
+                        "marketGroupID": 685,
+                        "children": {
+                            "Gravimetric Sensors": {
+                                "marketGroupID": 725
+                            },
+                            "Ladar Sensors": {
+                                "marketGroupID": 726
+                            },
+                            "Magnetometric Sensors": {
+                                "marketGroupID": 727
+                            },
+                            "Multi-Spectrum Sensors": {
+                                "marketGroupID": 728
+                            },
+                            "Radar Sensors": {
+                                "marketGroupID": 729
+                            }
+                        }
+                    },
+                    "Projected ECCM": {
+                        "marketGroupID": 686
+                    },
+                    "Target Painters": {
+                        "marketGroupID": 757
+                    },
+                    "Warp Disruption Field Generators": {
+                        "marketGroupID": 1085
+                    },
+                    "Signature Suppressor": {
+                        "marketGroupID": 1426
+                    },
+                    "Warp Disruptors": {
+                        "marketGroupID": 1935
+                    },
+                    "Warp Scramblers": {
+                        "marketGroupID": 1936
+                    },
+                    "Interdiction Sphere Launchers": {
+                        "marketGroupID": 1937
+                    },
+                    "Stasis Grapplers": {
+                        "marketGroupID": 2154
+                    },
+                    "Burst Projectors": {
+                        "marketGroupID": 2249
+                    }
+                }
+            },
+            "Fleet Assistance Modules": {
+                "marketGroupID": 779,
+                "children": {
+                    "Command Bursts": {
+                        "marketGroupID": 1633
+                    },
+                    "Command Processors": {
+                        "marketGroupID": 1639
+                    },
+                    "Jump Portal Generators": {
+                        "marketGroupID": 1640
+                    },
+                    "Cynosural Field Generators": {
+                        "marketGroupID": 1641
+                    },
+                    "Clone Vat Bays": {
+                        "marketGroupID": 1642
+                    }
+                }
+            },
+            "Drone Upgrades": {
+                "marketGroupID": 938
+            },
+            "Scanning Equipment": {
+                "marketGroupID": 1708,
+                "children": {
+                    "Cargo Scanners": {
+                        "marketGroupID": 711
+                    },
+                    "Scan Probe Launchers": {
+                        "marketGroupID": 712
+                    },
+                    "Ship Scanners": {
+                        "marketGroupID": 713
+                    },
+                    "Survey Scanners": {
+                        "marketGroupID": 714
+                    },
+                    "Scanning Upgrades": {
+                        "marketGroupID": 1709
+                    },
+                    "Survey Probe Launchers": {
+                        "marketGroupID": 1717
+                    },
+                    "Analyzers": {
+                        "marketGroupID": 1718
+                    },
+                    "Entosis Links": {
+                        "marketGroupID": 2018
+                    }
+                }
+            },
+            "Harvest Equipment": {
+                "marketGroupID": 1713,
+                "children": {
+                    "Mining Upgrades": {
+                        "marketGroupID": 935
+                    },
+                    "Gas Cloud Scoops": {
+                        "marketGroupID": 1037
+                    },
+                    "Ice Harvesters": {
+                        "marketGroupID": 1038
+                    },
+                    "Mining Lasers": {
+                        "marketGroupID": 1039
+                    },
+                    "Strip Miners": {
+                        "marketGroupID": 1040
+                    },
+                    "Salvagers": {
+                        "marketGroupID": 1715
+                    },
+                    "Ice Mining Lasers": {
+                        "marketGroupID": 2151
+                    },
+                    "Gas Cloud Harvesters": {
+                        "marketGroupID": 2795
+                    }
+                }
+            },
+            "Compressors": {
+                "marketGroupID": 2815
+            }
+        }
+    },
+    "Ammunition & Charges": {
+        "marketGroupID": 11,
+        "children": {
+            "Projectile Ammo": {
+                "marketGroupID": 99,
+                "children": {
+                    "Standard Ammo": {
+                        "marketGroupID": 845,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 109
+                            },
+                            "Medium": {
+                                "marketGroupID": 112
+                            },
+                            "Small": {
+                                "marketGroupID": 113
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 502
+                            }
+                        }
+                    },
+                    "Advanced Artillery Ammo": {
+                        "marketGroupID": 846,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 854
+                            },
+                            "Medium": {
+                                "marketGroupID": 855
+                            },
+                            "Small": {
+                                "marketGroupID": 856
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 2252
+                            }
+                        }
+                    },
+                    "Advanced Autocannon Ammo": {
+                        "marketGroupID": 847,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 857
+                            },
+                            "Medium": {
+                                "marketGroupID": 858
+                            },
+                            "Small": {
+                                "marketGroupID": 859
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 2253
+                            }
+                        }
+                    },
+                    "Faction Ammo": {
+                        "marketGroupID": 986,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 987
+                            },
+                            "Medium": {
+                                "marketGroupID": 988
+                            },
+                            "Small": {
+                                "marketGroupID": 989
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 1006
+                            }
+                        }
+                    },
+                    "Orbital Strike": {
+                        "marketGroupID": 1598
+                    }
+                }
+            },
+            "Hybrid Charges": {
+                "marketGroupID": 100,
+                "children": {
+                    "Standard Charges": {
+                        "marketGroupID": 848,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 106
+                            },
+                            "Small": {
+                                "marketGroupID": 107
+                            },
+                            "Medium": {
+                                "marketGroupID": 108
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 504
+                            }
+                        }
+                    },
+                    "Advanced Blaster Charges": {
+                        "marketGroupID": 849,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 860
+                            },
+                            "Medium": {
+                                "marketGroupID": 861
+                            },
+                            "Small": {
+                                "marketGroupID": 862
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 2254
+                            }
+                        }
+                    },
+                    "Advanced Railgun Charges": {
+                        "marketGroupID": 850,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 863
+                            },
+                            "Medium": {
+                                "marketGroupID": 864
+                            },
+                            "Small": {
+                                "marketGroupID": 865
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 2255
+                            }
+                        }
+                    },
+                    "Faction Charges": {
+                        "marketGroupID": 990,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 991
+                            },
+                            "Medium": {
+                                "marketGroupID": 992
+                            },
+                            "Small": {
+                                "marketGroupID": 993
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 1004
+                            }
+                        }
+                    },
+                    "Orbital Strike": {
+                        "marketGroupID": 1600
+                    }
+                }
+            },
+            "Frequency Crystals": {
+                "marketGroupID": 101,
+                "children": {
+                    "Standard Crystals": {
+                        "marketGroupID": 851,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 102
+                            },
+                            "Medium": {
+                                "marketGroupID": 103
+                            },
+                            "Large": {
+                                "marketGroupID": 105
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 503
+                            }
+                        }
+                    },
+                    "Advanced Beam Laser Crystals": {
+                        "marketGroupID": 852,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 866
+                            },
+                            "Medium": {
+                                "marketGroupID": 867
+                            },
+                            "Small": {
+                                "marketGroupID": 868
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 2257
+                            }
+                        }
+                    },
+                    "Advanced Pulse Laser Crystals": {
+                        "marketGroupID": 853,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 869
+                            },
+                            "Medium": {
+                                "marketGroupID": 870
+                            },
+                            "Small": {
+                                "marketGroupID": 871
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 2256
+                            }
+                        }
+                    },
+                    "Faction Crystals": {
+                        "marketGroupID": 994,
+                        "children": {
+                            "Large": {
+                                "marketGroupID": 995
+                            },
+                            "Medium": {
+                                "marketGroupID": 996
+                            },
+                            "Small": {
+                                "marketGroupID": 997
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 1007
+                            }
+                        }
+                    },
+                    "Orbital Strike": {
+                        "marketGroupID": 1599
+                    }
+                }
+            },
+            "Missiles": {
+                "marketGroupID": 114,
+                "children": {
+                    "Auto-Targeting": {
+                        "marketGroupID": 115,
+                        "children": {
+                            "Standard Auto-Targeting": {
+                                "marketGroupID": 914
+                            },
+                            "Faction Auto-Targeting": {
+                                "marketGroupID": 1192
+                            }
+                        }
+                    },
+                    "Defender": {
+                        "marketGroupID": 116
+                    },
+                    "Light Missiles": {
+                        "marketGroupID": 117,
+                        "children": {
+                            "Advanced High Precision Light Missiles": {
+                                "marketGroupID": 917
+                            },
+                            "Standard Light Missiles": {
+                                "marketGroupID": 920
+                            },
+                            "Advanced High Damage Light Missiles": {
+                                "marketGroupID": 927
+                            },
+                            "Faction Light Missiles": {
+                                "marketGroupID": 998
+                            }
+                        }
+                    },
+                    "Rockets": {
+                        "marketGroupID": 118,
+                        "children": {
+                            "Standard Rockets": {
+                                "marketGroupID": 922
+                            },
+                            "Advanced Long Range Rockets": {
+                                "marketGroupID": 928
+                            },
+                            "Advanced Anti-Ship Rockets": {
+                                "marketGroupID": 930
+                            },
+                            "Faction Rockets": {
+                                "marketGroupID": 999
+                            }
+                        }
+                    },
+                    "Torpedoes": {
+                        "marketGroupID": 387,
+                        "children": {
+                            "Standard Torpedoes": {
+                                "marketGroupID": 923
+                            },
+                            "Advanced Long Range Torpedoes": {
+                                "marketGroupID": 929
+                            },
+                            "Advanced Anti-Ship Torpedoes": {
+                                "marketGroupID": 931
+                            },
+                            "Faction Torpedoes": {
+                                "marketGroupID": 1000
+                            }
+                        }
+                    },
+                    "XL Torpedoes": {
+                        "marketGroupID": 505,
+                        "children": {
+                            "Standard XL Torpedoes": {
+                                "marketGroupID": 1193
+                            },
+                            "Faction XL Torpedoes": {
+                                "marketGroupID": 1194
+                            },
+                            "Advanced Anti-Ship XL Torpedoes": {
+                                "marketGroupID": 2258
+                            },
+                            "Advanced Long Range XL Torpedoes": {
+                                "marketGroupID": 2259
+                            }
+                        }
+                    },
+                    "Cruise Missiles": {
+                        "marketGroupID": 580,
+                        "children": {
+                            "Advanced High Precision Cruise Missiles": {
+                                "marketGroupID": 918
+                            },
+                            "Standard Cruise Missiles": {
+                                "marketGroupID": 921
+                            },
+                            "Advanced High Damage Cruise Missiles": {
+                                "marketGroupID": 925
+                            },
+                            "Faction Cruise Missiles": {
+                                "marketGroupID": 1001
+                            }
+                        }
+                    },
+                    "Heavy Missiles": {
+                        "marketGroupID": 581,
+                        "children": {
+                            "Advanced High Precision Heavy Missiles": {
+                                "marketGroupID": 919
+                            },
+                            "Standard Heavy Missiles": {
+                                "marketGroupID": 924
+                            },
+                            "Advanced High Damage Heavy Missiles": {
+                                "marketGroupID": 926
+                            },
+                            "Faction Heavy Missiles": {
+                                "marketGroupID": 1002
+                            }
+                        }
+                    },
+                    "Heavy Assault Missiles": {
+                        "marketGroupID": 968,
+                        "children": {
+                            "Standard Heavy Assault Missiles": {
+                                "marketGroupID": 971
+                            },
+                            "Advanced Long Range Heavy Assault Missiles": {
+                                "marketGroupID": 972
+                            },
+                            "Advanced Anti-Ship Heavy Assault Missile": {
+                                "marketGroupID": 973
+                            },
+                            "Faction Heavy Assault Missiles": {
+                                "marketGroupID": 1003
+                            }
+                        }
+                    },
+                    "XL Cruise Missiles": {
+                        "marketGroupID": 1316,
+                        "children": {
+                            "Standard XL Cruise Missiles": {
+                                "marketGroupID": 1287
+                            },
+                            "Faction XL Cruise Missiles": {
+                                "marketGroupID": 1317
+                            },
+                            "Advanced High Precision XL Cruise Missiles": {
+                                "marketGroupID": 2260
+                            },
+                            "Advanced High Damage XL Cruise Missiles": {
+                                "marketGroupID": 2261
+                            }
+                        }
+                    },
+                    "Structure Antisubcapital Missiles": {
+                        "marketGroupID": 2196
+                    },
+                    "Structure Anticapital Missiles": {
+                        "marketGroupID": 2197
+                    }
+                }
+            },
+            "Probes": {
+                "marketGroupID": 120,
+                "children": {
+                    "Scan Probes": {
+                        "marketGroupID": 1199
+                    },
+                    "Survey Probes": {
+                        "marketGroupID": 1200
+                    },
+                    "Interdiction Probes": {
+                        "marketGroupID": 1201
+                    }
+                }
+            },
+            "Cap Booster Charges": {
+                "marketGroupID": 139
+            },
+            "Mining Crystals": {
+                "marketGroupID": 593,
+                "children": {
+                    "Asteroid Mining Crystals": {
+                        "marketGroupID": 2804
+                    },
+                    "Moon Mining Crystals": {
+                        "marketGroupID": 2805
+                    }
+                }
+            },
+            "Bombs": {
+                "marketGroupID": 1015
+            },
+            "Scripts": {
+                "marketGroupID": 1094
+            },
+            "Nanite Repair Paste": {
+                "marketGroupID": 1103
+            },
+            "Structure Guided Bombs": {
+                "marketGroupID": 2198
+            },
+            "Command Burst Charges": {
+                "marketGroupID": 2297,
+                "children": {
+                    "Armor Command Burst Charges": {
+                        "marketGroupID": 2298
+                    },
+                    "Information Command Burst Charges": {
+                        "marketGroupID": 2299
+                    },
+                    "Mining Foreman Burst Charges": {
+                        "marketGroupID": 2300
+                    },
+                    "Shield Command Burst Charges": {
+                        "marketGroupID": 2301
+                    },
+                    "Skirmish Command Burst Charges": {
+                        "marketGroupID": 2302
+                    }
+                }
+            },
+            "Exotic Plasma Charges": {
+                "marketGroupID": 2462,
+                "children": {
+                    "Standard Exotic Plasma Charges": {
+                        "marketGroupID": 2463,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 2465
+                            },
+                            "Medium": {
+                                "marketGroupID": 2466
+                            },
+                            "Large": {
+                                "marketGroupID": 2467
+                            },
+                            "Extra Large": {
+                                "marketGroupID": 2692
+                            }
+                        }
+                    },
+                    "Advanced Exotic Plasma Charges": {
+                        "marketGroupID": 2464,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 2468
+                            },
+                            "Medium": {
+                                "marketGroupID": 2469
+                            },
+                            "Large": {
+                                "marketGroupID": 2470
+                            }
+                        }
+                    }
+                }
+            },
+            "Condenser Packs": {
+                "marketGroupID": 2728,
+                "children": {
+                    "Standard Condenser Packs": {
+                        "marketGroupID": 2729,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 2734
+                            },
+                            "Medium": {
+                                "marketGroupID": 2735
+                            },
+                            "Large": {
+                                "marketGroupID": 2736
+                            }
+                        }
+                    },
+                    "Advanced Condenser Packs": {
+                        "marketGroupID": 2730,
+                        "children": {
+                            "Small": {
+                                "marketGroupID": 2737
+                            },
+                            "Medium": {
+                                "marketGroupID": 2738
+                            },
+                            "Large": {
+                                "marketGroupID": 2739
+                            }
+                        }
+                    }
+                }
+            },
+            "Structure Area Denial Ammunition": {
+                "marketGroupID": 2820
+            },
+            "Breacher Pods": {
+                "marketGroupID": 3725
+            }
+        }
+    },
+    "Implants & Boosters": {
+        "marketGroupID": 24,
+        "children": {
+            "Implants": {
+                "marketGroupID": 27,
+                "children": {
+                    "Skill Hardwiring": {
+                        "marketGroupID": 531,
+                        "children": {
+                            "Armor Implants": {
+                                "marketGroupID": 1469,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 1514
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1515
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1516
+                                    },
+                                    "Implant Slot 09": {
+                                        "marketGroupID": 1517
+                                    },
+                                    "Implant Slot 10": {
+                                        "marketGroupID": 1518
+                                    }
+                                }
+                            },
+                            "Electronic Systems Implants": {
+                                "marketGroupID": 1470,
+                                "children": {
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1512
+                                    },
+                                    "Implant Slot 09": {
+                                        "marketGroupID": 1513
+                                    }
+                                }
+                            },
+                            "Engineering Implants": {
+                                "marketGroupID": 1471,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 1507
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1508
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1509
+                                    }
+                                }
+                            },
+                            "Faction Omega Implants": {
+                                "marketGroupID": 1472,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 1506
+                                    }
+                                }
+                            },
+                            "Gunnery Implants": {
+                                "marketGroupID": 1473,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 1498
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1499
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1500
+                                    },
+                                    "Implant Slot 09": {
+                                        "marketGroupID": 1501
+                                    },
+                                    "Implant Slot 10": {
+                                        "marketGroupID": 1502
+                                    }
+                                }
+                            },
+                            "Industry Implants": {
+                                "marketGroupID": 1474,
+                                "children": {
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1504
+                                    }
+                                }
+                            },
+                            "Fleet Support Implants": {
+                                "marketGroupID": 1475,
+                                "children": {
+                                    "Implant Slot 10": {
+                                        "marketGroupID": 1505
+                                    }
+                                }
+                            },
+                            "Missile Implants": {
+                                "marketGroupID": 1476,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 1493
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1494
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1495
+                                    },
+                                    "Implant Slot 09": {
+                                        "marketGroupID": 1496
+                                    },
+                                    "Implant Slot 10": {
+                                        "marketGroupID": 1497
+                                    }
+                                }
+                            },
+                            "Navigation Implants": {
+                                "marketGroupID": 1477,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 1489
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1490
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1491
+                                    },
+                                    "Implant Slot 09": {
+                                        "marketGroupID": 1492
+                                    }
+                                }
+                            },
+                            "Science Implants": {
+                                "marketGroupID": 1478,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 1484
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1485
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1486
+                                    }
+                                }
+                            },
+                            "Shield Implants": {
+                                "marketGroupID": 1479,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 1480
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1481
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1482
+                                    },
+                                    "Implant Slot 09": {
+                                        "marketGroupID": 1483
+                                    }
+                                }
+                            },
+                            "Targeting Implants": {
+                                "marketGroupID": 1761,
+                                "children": {
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1765
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1766
+                                    }
+                                }
+                            },
+                            "Resource Processing Implants": {
+                                "marketGroupID": 1762,
+                                "children": {
+                                    "Implant Slot 10": {
+                                        "marketGroupID": 1767
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1768
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1769
+                                    }
+                                }
+                            },
+                            "Scanning Implants": {
+                                "marketGroupID": 1763,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 1770
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 1771
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1772
+                                    },
+                                    "Implant Slot 09": {
+                                        "marketGroupID": 1773
+                                    },
+                                    "Implant Slot 10": {
+                                        "marketGroupID": 1774
+                                    }
+                                }
+                            },
+                            "Neural Enhancement Implants": {
+                                "marketGroupID": 1764,
+                                "children": {
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 1775
+                                    },
+                                    "Implant Slot 09": {
+                                        "marketGroupID": 1776
+                                    },
+                                    "Implant Slot 10": {
+                                        "marketGroupID": 1777
+                                    }
+                                }
+                            },
+                            "Drone Implants": {
+                                "marketGroupID": 2473,
+                                "children": {
+                                    "Implant Slot 06": {
+                                        "marketGroupID": 2474
+                                    },
+                                    "Implant Slot 07": {
+                                        "marketGroupID": 2475
+                                    },
+                                    "Implant Slot 08": {
+                                        "marketGroupID": 2476
+                                    },
+                                    "Implant Slot 09": {
+                                        "marketGroupID": 2477
+                                    },
+                                    "Implant Slot 10": {
+                                        "marketGroupID": 2478
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Attribute Enhancers": {
+                        "marketGroupID": 532,
+                        "children": {
+                            "Implant Slot 01": {
+                                "marketGroupID": 618
+                            },
+                            "Implant Slot 02": {
+                                "marketGroupID": 619
+                            },
+                            "Implant Slot 03": {
+                                "marketGroupID": 620
+                            },
+                            "Implant Slot 04": {
+                                "marketGroupID": 621
+                            },
+                            "Implant Slot 05": {
+                                "marketGroupID": 622
+                            }
+                        }
+                    }
+                }
+            },
+            "Booster": {
+                "marketGroupID": 977,
+                "children": {
+                    "Booster Slot 01": {
+                        "marketGroupID": 2488,
+                        "children": {
+                            "Blue Pill": {
+                                "marketGroupID": 2491
+                            },
+                            "Exile": {
+                                "marketGroupID": 2492
+                            },
+                            "Mindflood": {
+                                "marketGroupID": 2493
+                            },
+                            "X-Instinct": {
+                                "marketGroupID": 2494
+                            },
+                            "Antipharmakon": {
+                                "marketGroupID": 2495
+                            },
+                            "Other": {
+                                "marketGroupID": 2506
+                            }
+                        }
+                    },
+                    "Booster Slot 02": {
+                        "marketGroupID": 2489,
+                        "children": {
+                            "Drop": {
+                                "marketGroupID": 2496
+                            },
+                            "Frentix": {
+                                "marketGroupID": 2497
+                            },
+                            "Sooth Sayer": {
+                                "marketGroupID": 2498
+                            },
+                            "Antipharmakon": {
+                                "marketGroupID": 2499
+                            }
+                        }
+                    },
+                    "Booster Slot 03": {
+                        "marketGroupID": 2490,
+                        "children": {
+                            "Crash": {
+                                "marketGroupID": 2500
+                            },
+                            "Antipharmakon": {
+                                "marketGroupID": 2501
+                            }
+                        }
+                    },
+                    "Booster Slot 11": {
+                        "marketGroupID": 2502,
+                        "children": {
+                            "Hardshell": {
+                                "marketGroupID": 2503
+                            },
+                            "Overclocker": {
+                                "marketGroupID": 2504
+                            },
+                            "Pyrolancea": {
+                                "marketGroupID": 2505
+                            }
+                        }
+                    },
+                    "Booster Slot 12": {
+                        "marketGroupID": 2530
+                    },
+                    "Booster Slot 14": {
+                        "marketGroupID": 2531
+                    },
+                    "Clone Mappers": {
+                        "marketGroupID": 2761
+                    },
+                    "Booster Slot 15": {
+                        "marketGroupID": 2790
+                    },
+                    "Booster Slot 16": {
+                        "marketGroupID": 2791
+                    },
+                    "Booster Slot 17": {
+                        "marketGroupID": 2792
+                    }
+                }
+            },
+            "Cerebral Accelerators": {
+                "marketGroupID": 2487
+            }
+        }
+    },
+    "Drones": {
+        "marketGroupID": 157,
+        "children": {
+            "Mining Drones": {
+                "marketGroupID": 158
+            },
+            "Combat Drones": {
+                "marketGroupID": 159,
+                "children": {
+                    "Light Scout Drones": {
+                        "marketGroupID": 837
+                    },
+                    "Medium Scout Drones": {
+                        "marketGroupID": 838
+                    },
+                    "Heavy Attack Drones": {
+                        "marketGroupID": 839
+                    },
+                    "Sentry Drones": {
+                        "marketGroupID": 911
+                    }
+                }
+            },
+            "Electronic Warfare Drones": {
+                "marketGroupID": 841
+            },
+            "Logistic Drones": {
+                "marketGroupID": 842
+            },
+            "Combat Utility Drones": {
+                "marketGroupID": 843
+            },
+            "Salvage Drones": {
+                "marketGroupID": 1646
+            },
+            "Fighters": {
+                "marketGroupID": 2236,
+                "children": {
+                    "Structure-based Fighters": {
+                        "marketGroupID": 2409,
+                        "children": {
+                            "Standup Light Fighters": {
+                                "marketGroupID": 2411
+                            },
+                            "Standup Heavy Fighters": {
+                                "marketGroupID": 2412
+                            },
+                            "Standup Support Fighters": {
+                                "marketGroupID": 2413
+                            }
+                        }
+                    },
+                    "Carrier-based Fighters": {
+                        "marketGroupID": 2410,
+                        "children": {
+                            "Light Fighters": {
+                                "marketGroupID": 840
+                            },
+                            "Heavy Fighters": {
+                                "marketGroupID": 1310
+                            },
+                            "Support Fighters": {
+                                "marketGroupID": 2239
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "Manufacture & Research": {
+        "marketGroupID": 475,
+        "children": {
+            "Materials": {
+                "marketGroupID": 533,
+                "children": {
+                    "Raw Materials": {
+                        "marketGroupID": 1031,
+                        "children": {
+                            "Standard Ores": {
+                                "marketGroupID": 54,
+                                "children": {
+                                    "Arkonor": {
+                                        "marketGroupID": 512
+                                    },
+                                    "Bistot": {
+                                        "marketGroupID": 514
+                                    },
+                                    "Pyroxeres": {
+                                        "marketGroupID": 515
+                                    },
+                                    "Plagioclase": {
+                                        "marketGroupID": 516
+                                    },
+                                    "Spodumain": {
+                                        "marketGroupID": 517
+                                    },
+                                    "Veldspar": {
+                                        "marketGroupID": 518
+                                    },
+                                    "Scordite": {
+                                        "marketGroupID": 519
+                                    },
+                                    "Crokite": {
+                                        "marketGroupID": 521
+                                    },
+                                    "Dark Ochre": {
+                                        "marketGroupID": 522
+                                    },
+                                    "Kernite": {
+                                        "marketGroupID": 523
+                                    },
+                                    "Gneiss": {
+                                        "marketGroupID": 525
+                                    },
+                                    "Omber": {
+                                        "marketGroupID": 526
+                                    },
+                                    "Hedbergite": {
+                                        "marketGroupID": 527
+                                    },
+                                    "Hemorphite": {
+                                        "marketGroupID": 528
+                                    },
+                                    "Jaspet": {
+                                        "marketGroupID": 529
+                                    },
+                                    "Mercoxit": {
+                                        "marketGroupID": 530
+                                    },
+                                    "Bezdnacine": {
+                                        "marketGroupID": 2538
+                                    },
+                                    "Rakovene": {
+                                        "marketGroupID": 2539
+                                    },
+                                    "Talassonite": {
+                                        "marketGroupID": 2540
+                                    },
+                                    "Mordunium": {
+                                        "marketGroupID": 3487
+                                    },
+                                    "Ytirium": {
+                                        "marketGroupID": 3488
+                                    },
+                                    "Eifyrium": {
+                                        "marketGroupID": 3489
+                                    },
+                                    "Ducinium": {
+                                        "marketGroupID": 3490
+                                    },
+                                    "Kylixium": {
+                                        "marketGroupID": 3636
+                                    },
+                                    "Nocxite": {
+                                        "marketGroupID": 3637
+                                    },
+                                    "Ueganite": {
+                                        "marketGroupID": 3638
+                                    },
+                                    "Hezorime": {
+                                        "marketGroupID": 3639
+                                    },
+                                    "Griemeer": {
+                                        "marketGroupID": 3640
+                                    }
+                                }
+                            },
+                            "Ice Ores": {
+                                "marketGroupID": 1855
+                            },
+                            "Alloys & Compounds": {
+                                "marketGroupID": 1856
+                            },
+                            "Moon Ores": {
+                                "marketGroupID": 2395,
+                                "children": {
+                                    "Ubiquitous Moon Ores": {
+                                        "marketGroupID": 2396
+                                    },
+                                    "Common Moon Ores": {
+                                        "marketGroupID": 2397
+                                    },
+                                    "Uncommon Moon Ores": {
+                                        "marketGroupID": 2398
+                                    },
+                                    "Rare Moon Ores": {
+                                        "marketGroupID": 2400
+                                    },
+                                    "Exceptional Moon Ores": {
+                                        "marketGroupID": 2401
+                                    }
+                                }
+                            },
+                            "Abyssal Materials": {
+                                "marketGroupID": 2479
+                            }
+                        }
+                    },
+                    "Gas Clouds Materials": {
+                        "marketGroupID": 1032,
+                        "children": {
+                            "Booster Gas Clouds": {
+                                "marketGroupID": 983
+                            },
+                            "Fullerenes": {
+                                "marketGroupID": 1859
+                            },
+                            "Compressed Gas": {
+                                "marketGroupID": 2814
+                            }
+                        }
+                    },
+                    "Ice Products": {
+                        "marketGroupID": 1033
+                    },
+                    "Reaction Materials": {
+                        "marketGroupID": 1034,
+                        "children": {
+                            "Advanced Moon Materials": {
+                                "marketGroupID": 499
+                            },
+                            "Processed Moon Materials": {
+                                "marketGroupID": 500
+                            },
+                            "Raw Moon Materials": {
+                                "marketGroupID": 501
+                            },
+                            "Booster Materials": {
+                                "marketGroupID": 1858
+                            },
+                            "Polymer Materials": {
+                                "marketGroupID": 1860
+                            },
+                            "Molecular-Forged Materials": {
+                                "marketGroupID": 2767
+                            }
+                        }
+                    },
+                    "Planetary Materials": {
+                        "marketGroupID": 1332,
+                        "children": {
+                            "Raw Planetary Materials": {
+                                "marketGroupID": 1333
+                            },
+                            "Processed Planetary Materials": {
+                                "marketGroupID": 1334
+                            },
+                            "Refined Planetary Materials": {
+                                "marketGroupID": 1335
+                            },
+                            "Specialized Planetary Materials": {
+                                "marketGroupID": 1336
+                            },
+                            "Advanced Planetary Materials": {
+                                "marketGroupID": 1337
+                            }
+                        }
+                    },
+                    "Minerals": {
+                        "marketGroupID": 1857
+                    },
+                    "Salvage Materials": {
+                        "marketGroupID": 1861,
+                        "children": {
+                            "Ancient Salvaged Materials": {
+                                "marketGroupID": 1862
+                            },
+                            "Salvaged Materials": {
+                                "marketGroupID": 1863
+                            }
+                        }
+                    },
+                    "Faction Materials": {
+                        "marketGroupID": 1897,
+                        "children": {
+                            "Angel Cartel": {
+                                "marketGroupID": 1898
+                            },
+                            "Blood Raiders": {
+                                "marketGroupID": 1899
+                            },
+                            "Guristas": {
+                                "marketGroupID": 1900
+                            },
+                            "Serpentis": {
+                                "marketGroupID": 1901
+                            },
+                            "Sleeper": {
+                                "marketGroupID": 1902
+                            },
+                            "Talocan": {
+                                "marketGroupID": 1903
+                            },
+                            "Yan Jung": {
+                                "marketGroupID": 1904
+                            },
+                            "Takmahl": {
+                                "marketGroupID": 1905
+                            },
+                            "Rogue Drones": {
+                                "marketGroupID": 1906
+                            },
+                            "Amarr Empire": {
+                                "marketGroupID": 3453
+                            },
+                            "Minmatar Republic": {
+                                "marketGroupID": 3454
+                            },
+                            "Caldari State": {
+                                "marketGroupID": 3455
+                            },
+                            "Gallente Federation": {
+                                "marketGroupID": 3456
+                            },
+                            "Mordu's Legion": {
+                                "marketGroupID": 3641
+                            },
+                            "Sansha's Nation": {
+                                "marketGroupID": 3642
+                            },
+                            "Sisters of EVE": {
+                                "marketGroupID": 3643
+                            }
+                        }
+                    },
+                    "Named Components": {
+                        "marketGroupID": 2155
+                    },
+                    "Advanced Protective Technology": {
+                        "marketGroupID": 2765
+                    },
+                    "Molecular-Forging Tools": {
+                        "marketGroupID": 2766
+                    },
+                    "Colony Reagents": {
+                        "marketGroupID": 3596
+                    },
+                    "Infomorph Systems": {
+                        "marketGroupID": 3696
+                    },
+                    "Atavum": {
+                        "marketGroupID": 3697
+                    }
+                }
+            },
+            "Components": {
+                "marketGroupID": 1035,
+                "children": {
+                    "Advanced Components": {
+                        "marketGroupID": 65,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 802
+                            },
+                            "Caldari": {
+                                "marketGroupID": 803
+                            },
+                            "Gallente": {
+                                "marketGroupID": 1888
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 1889
+                            },
+                            "Triglavian": {
+                                "marketGroupID": 2658
+                            },
+                            "Upwell": {
+                                "marketGroupID": 3594
+                            }
+                        }
+                    },
+                    "Standard Capital Ship Components": {
+                        "marketGroupID": 781
+                    },
+                    "Outpost Components": {
+                        "marketGroupID": 1021,
+                        "children": {
+                            "Improvement Platforms": {
+                                "marketGroupID": 1022,
+                                "children": {
+                                    "Amarr Improvement Platforms": {
+                                        "marketGroupID": 1866
+                                    },
+                                    "Caldari Improvement Platforms": {
+                                        "marketGroupID": 1867
+                                    },
+                                    "Gallente Improvement Platforms": {
+                                        "marketGroupID": 1868
+                                    },
+                                    "Minmatar Improvement Platforms": {
+                                        "marketGroupID": 1869
+                                    }
+                                }
+                            },
+                            "Outpost Upgrade Platforms": {
+                                "marketGroupID": 1027
+                            },
+                            "Construction Platforms": {
+                                "marketGroupID": 1864
+                            }
+                        }
+                    },
+                    "Subsystem Components": {
+                        "marketGroupID": 1147
+                    },
+                    "Structure Components": {
+                        "marketGroupID": 1865
+                    },
+                    "Fuel Blocks": {
+                        "marketGroupID": 1870
+                    },
+                    "Advanced Capital Components": {
+                        "marketGroupID": 1883,
+                        "children": {
+                            "Amarr": {
+                                "marketGroupID": 1884
+                            },
+                            "Caldari": {
+                                "marketGroupID": 1885
+                            },
+                            "Gallente": {
+                                "marketGroupID": 1886
+                            },
+                            "Minmatar": {
+                                "marketGroupID": 1887
+                            },
+                            "Triglavian": {
+                                "marketGroupID": 2693
+                            }
+                        }
+                    },
+                    "R.A.M.": {
+                        "marketGroupID": 1908
+                    },
+                    "Protective Components": {
+                        "marketGroupID": 2768
+                    }
+                }
+            },
+            "Research Equipment": {
+                "marketGroupID": 1872,
+                "children": {
+                    "Decryptors": {
+                        "marketGroupID": 1873
+                    },
+                    "Datacores": {
+                        "marketGroupID": 1880
+                    },
+                    "R.Db": {
+                        "marketGroupID": 1907
+                    },
+                    "Ancient Relics": {
+                        "marketGroupID": 1909
+                    }
+                }
+            }
+        }
+    },
+    "Structures": {
+        "marketGroupID": 477,
+        "children": {
+            "Deployable Structures": {
+                "marketGroupID": 404,
+                "children": {
+                    "Cargo Containers": {
+                        "marketGroupID": 379,
+                        "children": {
+                            "Secure Containers": {
+                                "marketGroupID": 1651
+                            },
+                            "Audit Log Containers": {
+                                "marketGroupID": 1652
+                            },
+                            "Freight Containers": {
+                                "marketGroupID": 1653
+                            },
+                            "Standard Containers": {
+                                "marketGroupID": 1657
+                            },
+                            "Station Containers": {
+                                "marketGroupID": 1658
+                            }
+                        }
+                    },
+                    "Warp Disruption Fields": {
+                        "marketGroupID": 405
+                    },
+                    "Mobile Depots": {
+                        "marketGroupID": 1831
+                    },
+                    "Mobile Cynosural Inhibitors": {
+                        "marketGroupID": 1832
+                    },
+                    "Mobile Tractor Units": {
+                        "marketGroupID": 1833
+                    },
+                    "Mobile Siphon Units": {
+                        "marketGroupID": 1835
+                    },
+                    "Mobile Micro Jump Units": {
+                        "marketGroupID": 1844
+                    },
+                    "Mobile Scan Inhibitors": {
+                        "marketGroupID": 1845
+                    },
+                    "Encounter Surveillance Systems": {
+                        "marketGroupID": 1847
+                    },
+                    "Mobile Cynosural Beacons": {
+                        "marketGroupID": 2763
+                    },
+                    "Mobile Observatories": {
+                        "marketGroupID": 2771
+                    },
+                    "Analysis Beacons": {
+                        "marketGroupID": 2798
+                    },
+                    "Mobile Strategic Objectives": {
+                        "marketGroupID": 3450
+                    },
+                    "Mercenary Dens": {
+                        "marketGroupID": 3680
+                    }
+                }
+            },
+            "Sovereignty Structures": {
+                "marketGroupID": 1272,
+                "children": {
+                    "Territorial Claim Units": {
+                        "marketGroupID": 1273
+                    },
+                    "Sovereignty Blockade Units": {
+                        "marketGroupID": 1274
+                    },
+                    "Sovereignty Hubs": {
+                        "marketGroupID": 1275
+                    },
+                    "Infrastructure Upgrades": {
+                        "marketGroupID": 1276,
+                        "children": {
+                            "Strategic Upgrades": {
+                                "marketGroupID": 1282
+                            },
+                            "Industrial Upgrades": {
+                                "marketGroupID": 1283
+                            },
+                            "Military Upgrades": {
+                                "marketGroupID": 1284
+                            }
+                        }
+                    }
+                }
+            },
+            "Starbase Structures": {
+                "marketGroupID": 1285,
+                "children": {
+                    "Control Towers": {
+                        "marketGroupID": 478
+                    },
+                    "Weapon Batteries": {
+                        "marketGroupID": 480,
+                        "children": {
+                            "Missile Batteries": {
+                                "marketGroupID": 479
+                            },
+                            "Electronic Warfare Batteries": {
+                                "marketGroupID": 481
+                            },
+                            "Projectile Batteries": {
+                                "marketGroupID": 594
+                            },
+                            "Hybrid Batteries": {
+                                "marketGroupID": 595
+                            },
+                            "Laser Batteries": {
+                                "marketGroupID": 596
+                            },
+                            "Energy Neutralization Batteries": {
+                                "marketGroupID": 1009
+                            }
+                        }
+                    },
+                    "Reprocessing Arrays": {
+                        "marketGroupID": 482
+                    },
+                    "Silos": {
+                        "marketGroupID": 483
+                    },
+                    "Ship Maintenance Arrays": {
+                        "marketGroupID": 484
+                    },
+                    "Shield Hardening Arrays": {
+                        "marketGroupID": 485
+                    },
+                    "Moon Harvesting Arrays": {
+                        "marketGroupID": 488
+                    },
+                    "Reactors": {
+                        "marketGroupID": 490
+                    },
+                    "Corporate Hangar Array": {
+                        "marketGroupID": 506
+                    },
+                    "Assembly Arrays": {
+                        "marketGroupID": 932
+                    },
+                    "Laboratory": {
+                        "marketGroupID": 933
+                    },
+                    "System Scanning Array": {
+                        "marketGroupID": 1010
+                    },
+                    "Jump Bridge": {
+                        "marketGroupID": 1011
+                    },
+                    "Cynosural System Jammer": {
+                        "marketGroupID": 1012
+                    },
+                    "Cynosural Generator Array": {
+                        "marketGroupID": 1013
+                    },
+                    "Personal Hangar Arrays": {
+                        "marketGroupID": 1702
+                    },
+                    "Compression Array": {
+                        "marketGroupID": 1921
+                    }
+                }
+            },
+            "Citadels": {
+                "marketGroupID": 2199,
+                "children": {
+                    "Faction Citadels": {
+                        "marketGroupID": 2200
+                    },
+                    "Standard Citadels": {
+                        "marketGroupID": 2201
+                    }
+                }
+            },
+            "Engineering Complexes": {
+                "marketGroupID": 2324
+            },
+            "Refineries": {
+                "marketGroupID": 2327
+            },
+            "FLEX Structures": {
+                "marketGroupID": 3624,
+                "children": {
+                    "Navigation Structures": {
+                        "marketGroupID": 2511
+                    },
+                    "Mining Structures": {
+                        "marketGroupID": 3625
+                    }
+                }
+            }
+        }
+    },
+    "Ship and Module Modifications": {
+        "marketGroupID": 955,
+        "children": {
+            "Rigs": {
+                "marketGroupID": 1111,
+                "children": {
+                    "Armor Rigs": {
+                        "marketGroupID": 956,
+                        "children": {
+                            "Small Armor Rigs": {
+                                "marketGroupID": 1206
+                            },
+                            "Medium Armor Rigs": {
+                                "marketGroupID": 1207
+                            },
+                            "Large Armor Rigs": {
+                                "marketGroupID": 1208
+                            },
+                            "Capital Armor Rigs": {
+                                "marketGroupID": 1730
+                            }
+                        }
+                    },
+                    "Astronautic Rigs": {
+                        "marketGroupID": 957,
+                        "children": {
+                            "Small Astronautic Rigs": {
+                                "marketGroupID": 1210
+                            },
+                            "Medium Astronautic Rigs": {
+                                "marketGroupID": 1211
+                            },
+                            "Large Astronautic Rigs": {
+                                "marketGroupID": 1212
+                            },
+                            "Capital Astronautic Rigs": {
+                                "marketGroupID": 1740
+                            }
+                        }
+                    },
+                    "Drone Rigs": {
+                        "marketGroupID": 958,
+                        "children": {
+                            "Small Drone Rigs": {
+                                "marketGroupID": 1213
+                            },
+                            "Medium Drone Rigs": {
+                                "marketGroupID": 1214
+                            },
+                            "Large Drone Rigs": {
+                                "marketGroupID": 1215
+                            },
+                            "Capital Drone Rigs": {
+                                "marketGroupID": 1739
+                            }
+                        }
+                    },
+                    "Electronics Superiority Rigs": {
+                        "marketGroupID": 960,
+                        "children": {
+                            "Small Electronics Superiority Rigs": {
+                                "marketGroupID": 1219
+                            },
+                            "Medium Electronics Superiority Rigs": {
+                                "marketGroupID": 1220
+                            },
+                            "Large Electronics Superiority Rigs": {
+                                "marketGroupID": 1221
+                            },
+                            "Capital Electronics Superiority Rigs": {
+                                "marketGroupID": 1737
+                            }
+                        }
+                    },
+                    "Engineering Rigs": {
+                        "marketGroupID": 961,
+                        "children": {
+                            "Small Engineering Rigs": {
+                                "marketGroupID": 1222
+                            },
+                            "Medium Engineering Rigs": {
+                                "marketGroupID": 1223
+                            },
+                            "Large Engineering Rigs": {
+                                "marketGroupID": 1224
+                            },
+                            "Capital Engineering Rigs": {
+                                "marketGroupID": 1736
+                            }
+                        }
+                    },
+                    "Energy Weapon Rigs": {
+                        "marketGroupID": 962,
+                        "children": {
+                            "Small Energy Weapon Rigs": {
+                                "marketGroupID": 1225
+                            },
+                            "Medium Energy Weapon Rigs": {
+                                "marketGroupID": 1226
+                            },
+                            "Large Energy Weapon Rigs": {
+                                "marketGroupID": 1227
+                            },
+                            "Capital Energy Weapon Rigs": {
+                                "marketGroupID": 1735
+                            }
+                        }
+                    },
+                    "Hybrid Weapon Rigs": {
+                        "marketGroupID": 963,
+                        "children": {
+                            "Small Hybrid Weapon Rigs": {
+                                "marketGroupID": 1228
+                            },
+                            "Medium Hybrid Weapon Rigs": {
+                                "marketGroupID": 1229
+                            },
+                            "Large Hybrid Weapon Rigs": {
+                                "marketGroupID": 1230
+                            },
+                            "Capital Hybrid Weapon Rigs": {
+                                "marketGroupID": 1734
+                            }
+                        }
+                    },
+                    "Missile Launcher Rigs": {
+                        "marketGroupID": 964,
+                        "children": {
+                            "Small Missile Launcher Rigs": {
+                                "marketGroupID": 1231
+                            },
+                            "Medium Missile Launcher Rigs": {
+                                "marketGroupID": 1232
+                            },
+                            "Large Missile Launcher Rigs": {
+                                "marketGroupID": 1233
+                            },
+                            "Capital Missile Launcher Rigs": {
+                                "marketGroupID": 1733
+                            }
+                        }
+                    },
+                    "Shield Rigs": {
+                        "marketGroupID": 965,
+                        "children": {
+                            "Small Shield Rigs": {
+                                "marketGroupID": 1234
+                            },
+                            "Medium Shield Rigs": {
+                                "marketGroupID": 1235
+                            },
+                            "Large Shield Rigs": {
+                                "marketGroupID": 1236
+                            },
+                            "Capital Shield Rigs": {
+                                "marketGroupID": 1732
+                            }
+                        }
+                    },
+                    "Projectile Weapon Rigs": {
+                        "marketGroupID": 979,
+                        "children": {
+                            "Small Projectile Weapon Rigs": {
+                                "marketGroupID": 1237
+                            },
+                            "Medium Projectile Weapon Rigs": {
+                                "marketGroupID": 1238
+                            },
+                            "Large Projectile Weapon Rigs": {
+                                "marketGroupID": 1239
+                            },
+                            "Capital Projectile Weapon Rigs": {
+                                "marketGroupID": 1731
+                            }
+                        }
+                    },
+                    "Resource Processing Rigs": {
+                        "marketGroupID": 1779,
+                        "children": {
+                            "Small Resource Processing Rigs": {
+                                "marketGroupID": 1782
+                            },
+                            "Medium Resource Processing Rigs": {
+                                "marketGroupID": 1783
+                            },
+                            "Large Resource Processing Rigs": {
+                                "marketGroupID": 1784
+                            },
+                            "Capital Resource Processing Rigs": {
+                                "marketGroupID": 1785
+                            }
+                        }
+                    },
+                    "Scanning Rigs": {
+                        "marketGroupID": 1780,
+                        "children": {
+                            "Small Scanning Rigs": {
+                                "marketGroupID": 1786
+                            },
+                            "Medium Scanning Rigs": {
+                                "marketGroupID": 1787
+                            },
+                            "Large Scanning Rigs": {
+                                "marketGroupID": 1788
+                            },
+                            "Capital Scanning Rigs": {
+                                "marketGroupID": 1789
+                            }
+                        }
+                    },
+                    "Targeting Rigs": {
+                        "marketGroupID": 1781,
+                        "children": {
+                            "Small Targeting Rigs": {
+                                "marketGroupID": 1790
+                            },
+                            "Medium Targeting Rigs": {
+                                "marketGroupID": 1791
+                            },
+                            "Large Targeting Rigs": {
+                                "marketGroupID": 1792
+                            },
+                            "Capital Targeting Rigs": {
+                                "marketGroupID": 1793
+                            }
+                        }
+                    }
+                }
+            },
+            "Subsystems": {
+                "marketGroupID": 1112,
+                "children": {
+                    "Amarr Subsystems": {
+                        "marketGroupID": 1610,
+                        "children": {
+                            "Amarr Core Subsystems": {
+                                "marketGroupID": 1122
+                            },
+                            "Amarr Defensive Subsystems": {
+                                "marketGroupID": 1126
+                            },
+                            "Amarr Offensive Subsystems": {
+                                "marketGroupID": 1130
+                            },
+                            "Amarr Propulsion Subsystems": {
+                                "marketGroupID": 1134
+                            }
+                        }
+                    },
+                    "Caldari Subsystems": {
+                        "marketGroupID": 1625,
+                        "children": {
+                            "Caldari Core Subsystems": {
+                                "marketGroupID": 1123
+                            },
+                            "Caldari Defensive Subsystems": {
+                                "marketGroupID": 1127
+                            },
+                            "Caldari Offensive Subsystems": {
+                                "marketGroupID": 1131
+                            },
+                            "Caldari Propulsion Subsystems": {
+                                "marketGroupID": 1135
+                            }
+                        }
+                    },
+                    "Minmatar Subsystems": {
+                        "marketGroupID": 1626,
+                        "children": {
+                            "Minmatar Core Subsystems": {
+                                "marketGroupID": 1125
+                            },
+                            "Minmatar Defensive Subsystems": {
+                                "marketGroupID": 1128
+                            },
+                            "Minmatar Offensive Subsystems": {
+                                "marketGroupID": 1133
+                            },
+                            "Minmatar Propulsion Subsystems": {
+                                "marketGroupID": 1137
+                            }
+                        }
+                    },
+                    "Gallente Subsystems": {
+                        "marketGroupID": 1627,
+                        "children": {
+                            "Gallente Core Subsystems": {
+                                "marketGroupID": 1124
+                            },
+                            "Gallente Defensive Subsystems": {
+                                "marketGroupID": 1129
+                            },
+                            "Gallente Offensive Subsystems": {
+                                "marketGroupID": 1132
+                            },
+                            "Gallente Propulsion Subsystems": {
+                                "marketGroupID": 1136
+                            }
+                        }
+                    }
+                }
+            },
+            "Mutaplasmids": {
+                "marketGroupID": 2436,
+                "children": {
+                    "Armor Mutaplasmids": {
+                        "marketGroupID": 2437,
+                        "children": {
+                            "Small Armor Mutaplasmids": {
+                                "marketGroupID": 2443
+                            },
+                            "Medium Armor Mutaplasmids": {
+                                "marketGroupID": 2444
+                            },
+                            "Large Armor Mutaplasmids": {
+                                "marketGroupID": 2445
+                            },
+                            "Capital Armor Mutaplasmids": {
+                                "marketGroupID": 2751
+                            }
+                        }
+                    },
+                    "Shield Mutaplasmids": {
+                        "marketGroupID": 2438,
+                        "children": {
+                            "Small Shield Mutaplasmids": {
+                                "marketGroupID": 2446
+                            },
+                            "Medium Shield Mutaplasmids": {
+                                "marketGroupID": 2447
+                            },
+                            "Large Shield Mutaplasmids": {
+                                "marketGroupID": 2448
+                            },
+                            "X-Large Shield Mutaplasmids": {
+                                "marketGroupID": 2449
+                            },
+                            "Capital Shield Mutaplasmids": {
+                                "marketGroupID": 2752
+                            }
+                        }
+                    },
+                    "Astronautic Mutaplasmids": {
+                        "marketGroupID": 2439,
+                        "children": {
+                            "Small Astronautic Mutaplasmids": {
+                                "marketGroupID": 2450
+                            },
+                            "Medium Astronautic Mutaplasmids": {
+                                "marketGroupID": 2451
+                            },
+                            "Large Astronautic Mutaplasmids": {
+                                "marketGroupID": 2452
+                            },
+                            "Capital Astronautic Mutaplasmids": {
+                                "marketGroupID": 2750
+                            }
+                        }
+                    },
+                    "Engineering Mutaplasmids": {
+                        "marketGroupID": 2440,
+                        "children": {
+                            "Small Engineering Mutaplasmids": {
+                                "marketGroupID": 2453
+                            },
+                            "Medium Engineering Mutaplasmids": {
+                                "marketGroupID": 2454
+                            },
+                            "Large Engineering Mutaplasmids": {
+                                "marketGroupID": 2455
+                            },
+                            "Capital Engineering Mutaplasmids": {
+                                "marketGroupID": 2753
+                            }
+                        }
+                    },
+                    "Warp Disruption Mutaplasmids": {
+                        "marketGroupID": 2441
+                    },
+                    "Stasis Webifier Mutaplasmids": {
+                        "marketGroupID": 2442
+                    },
+                    "Weapon Upgrade Mutaplasmids": {
+                        "marketGroupID": 2512,
+                        "children": {
+                            "Magnetic Field Stabilizer Mutaplasmids": {
+                                "marketGroupID": 2513
+                            },
+                            "Heat Sink Mutaplasmids": {
+                                "marketGroupID": 2514
+                            },
+                            "Gyrostabilizer Mutaplasmids": {
+                                "marketGroupID": 2515
+                            },
+                            "Entropic Radiation Sink Mutaplasmids": {
+                                "marketGroupID": 2516
+                            },
+                            "Ballistic Control System Mutaplasmids": {
+                                "marketGroupID": 2517
+                            },
+                            "Siege Module Mutaplasmids": {
+                                "marketGroupID": 2754
+                            },
+                            "Vorton Tuning System Mutaplasmids": {
+                                "marketGroupID": 3542
+                            }
+                        }
+                    },
+                    "Damage Control Mutaplasmids": {
+                        "marketGroupID": 2532,
+                        "children": {
+                            "Damage Control Mutaplasmids": {
+                                "marketGroupID": 2533
+                            },
+                            "Assault Damage Control Mutaplasmids": {
+                                "marketGroupID": 2534
+                            }
+                        }
+                    },
+                    "Smartbomb Mutaplasmids": {
+                        "marketGroupID": 3667,
+                        "children": {
+                            "Small Smartbomb Mutaplasmids": {
+                                "marketGroupID": 3668
+                            },
+                            "Medium Smartbomb Mutaplasmids": {
+                                "marketGroupID": 3669
+                            },
+                            "Large Smartbomb Mutaplasmids": {
+                                "marketGroupID": 3670
+                            }
+                        }
+                    },
+                    "Drone Mutaplasmids": {
+                        "marketGroupID": 3719,
+                        "children": {
+                            "Light Drone Mutaplasmids": {
+                                "marketGroupID": 3720
+                            },
+                            "Medium Drone Mutaplasmids": {
+                                "marketGroupID": 3721
+                            },
+                            "Heavy Drone Mutaplasmids": {
+                                "marketGroupID": 3722
+                            },
+                            "Sentry Drone Mutaplasmids": {
+                                "marketGroupID": 3723
+                            },
+                            "Drone Module Mutaplasmids": {
+                                "marketGroupID": 3724
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "Planetary Infrastructure": {
+        "marketGroupID": 1320,
+        "children": {
+            "Command Centers": {
+                "marketGroupID": 1322
+            },
+            "Orbital Infrastructure": {
+                "marketGroupID": 1410
+            }
+        }
+    },
+    "Structure Equipment": {
+        "marketGroupID": 2202,
+        "children": {
+            "Electronic Warfare": {
+                "marketGroupID": 2206,
+                "children": {
+                    "Electronic Counter Measures": {
+                        "marketGroupID": 2211
+                    },
+                    "Remote Sensor Dampeners": {
+                        "marketGroupID": 2212
+                    },
+                    "Stasis Webifiers": {
+                        "marketGroupID": 2213
+                    },
+                    "Target Painters": {
+                        "marketGroupID": 2214
+                    },
+                    "Weapon Disruptors": {
+                        "marketGroupID": 2215
+                    },
+                    "Warp Disruptors": {
+                        "marketGroupID": 2216
+                    },
+                    "Structure Burst Projectors": {
+                        "marketGroupID": 2408
+                    }
+                }
+            },
+            "Electronics and Sensor Upgrades": {
+                "marketGroupID": 2207,
+                "children": {
+                    "CPU Upgrades": {
+                        "marketGroupID": 2218
+                    },
+                    "Signal Amplifiers": {
+                        "marketGroupID": 2219
+                    }
+                }
+            },
+            "Engineering Equipment": {
+                "marketGroupID": 2208,
+                "children": {
+                    "Capacitor Power Relays": {
+                        "marketGroupID": 2220
+                    },
+                    "Point Defense Batteries": {
+                        "marketGroupID": 2221
+                    },
+                    "Reactor Control Units": {
+                        "marketGroupID": 2222
+                    },
+                    "Energy Neutralizers": {
+                        "marketGroupID": 2223
+                    },
+                    "Capacitor Batteries": {
+                        "marketGroupID": 2224
+                    },
+                    "Armor Reinforcers": {
+                        "marketGroupID": 2414
+                    }
+                }
+            },
+            "Structure Weapons": {
+                "marketGroupID": 2209,
+                "children": {
+                    "Missile Launchers": {
+                        "marketGroupID": 2226,
+                        "children": {
+                            "Structure Anticapital Launcher": {
+                                "marketGroupID": 2230
+                            },
+                            "Structure Antisubcapital Launcher": {
+                                "marketGroupID": 2231
+                            }
+                        }
+                    },
+                    "Weapon Upgrades": {
+                        "marketGroupID": 2227,
+                        "children": {
+                            "Ballistic Control Systems": {
+                                "marketGroupID": 2234
+                            },
+                            "Missile Guidance Enhancers": {
+                                "marketGroupID": 2235
+                            }
+                        }
+                    },
+                    "Doomsday Devices": {
+                        "marketGroupID": 2228
+                    },
+                    "Guided Bomb Launchers": {
+                        "marketGroupID": 2229
+                    }
+                }
+            },
+            "Service Modules": {
+                "marketGroupID": 2210,
+                "children": {
+                    "Citadel Service Modules": {
+                        "marketGroupID": 2232
+                    },
+                    "Resource Processing Service Modules": {
+                        "marketGroupID": 2233
+                    },
+                    "Engineering Service Modules": {
+                        "marketGroupID": 2332
+                    }
+                }
+            },
+            "Quantum Cores": {
+                "marketGroupID": 2749
+            }
+        }
+    },
+    "Structure Modifications": {
+        "marketGroupID": 2203,
+        "children": {
+            "Structure Resource Processing Rigs": {
+                "marketGroupID": 2204,
+                "children": {
+                    "Medium Structure Resource Processing Rigs": {
+                        "marketGroupID": 2341
+                    },
+                    "Large Structure Resource Processing Rigs": {
+                        "marketGroupID": 2342
+                    },
+                    "X-Large Structure Resource Processing Rigs": {
+                        "marketGroupID": 2343
+                    }
+                }
+            },
+            "Structure Combat Rigs": {
+                "marketGroupID": 2205,
+                "children": {
+                    "Medium Structure Combat Rigs": {
+                        "marketGroupID": 2344
+                    },
+                    "Large Structure Combat Rigs": {
+                        "marketGroupID": 2345
+                    },
+                    "X-Large Structure Combat Rigs": {
+                        "marketGroupID": 2346
+                    }
+                }
+            },
+            "Structure Engineering Rigs": {
+                "marketGroupID": 2340,
+                "children": {
+                    "Medium Structure Engineering Rigs": {
+                        "marketGroupID": 2347
+                    },
+                    "Large Structure Engineering Rigs": {
+                        "marketGroupID": 2348
+                    },
+                    "X-Large Structure Engineering Rigs": {
+                        "marketGroupID": 2349
+                    }
+                }
+            }
+        }
+    }
+}
+
+我更改一下需求，我需要将这些类别重新分类。规则如下：
+1.如果根类别是Ship
+2.如果根类别是Ship Equipment，Implants & Boosters，Ship and Module Modifications则记录类别为Modules。
+3.如果根类别是Ammunition & Charges，则记录为Ammunition。
+5.如果根类别是Drone，记录为Drone
+6.如果根类别是Manufacture & Research，
+7.如果根类别是Structures，Structure Equipment，Structure Modifications，Planetary Infrastructure，则记录为Structures
+
