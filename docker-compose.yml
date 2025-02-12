@@ -2,17 +2,15 @@ version: '2'
 services:
   web:
     build: .
-    command: gunicorn -w 4 -b 0.0.0.0:5000 --reload app.app:app  # 使用 gunicorn 并且添加 --reload
+    command: gunicorn -w 4 -b 0.0.0.0:5000 --timeout 60 --reload app.app:app  # 使用 gunicorn
     volumes:
       - .:/app
-      # - /etc/localtime:/etc/localtime:ro
-      # - /etc/timezone:/etc/timezone:ro
     ports:
       - "5000:5000"
     environment:
       - FLASK_ENV=development
       - FLASK_APP=app/app.py
-      # - TZ=Asia/Shanghai
+      # - https_proxy="http://10.1.9.74:7890"
     depends_on:
       - redis
     networks:
@@ -23,6 +21,14 @@ services:
       - ./data:/data
     networks:
       - flaskservice
+  sqlite-web:
+    image: ghcr.nju.edu.cn/coleifer/sqlite-web
+    ports:
+      - "8750:8750"
+    volumes:
+      - ./data:/data
+    command: python -m sqlite_web -H 0.0.0.0 -p 8750 /data/data.db
+
 networks:
   flaskservice:
     driver: bridge

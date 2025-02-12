@@ -19,7 +19,6 @@ class ESIClient:
         self.headers = headers or {}
         self.session = requests.Session()
         self.session.headers.update(self.headers)
-        self.session.token = {}
     
     def get(self, endpoint: str, params: Dict[str, Any] = None,access_token: str = None) -> Dict[str, Any]:
         """发送 GET 请求"""
@@ -222,7 +221,8 @@ class ESIClient:
     def get_jobs(self,c_id,token):
         return self.get(f'/characters/{c_id}/industry/jobs/',access_token=token)
         
-    
+    def get_adjusted_price(self):
+        return self.get('/markets/prices')
     
 
     def close(self):

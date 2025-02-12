@@ -6,10 +6,12 @@ import json
 from datetime import datetime, timedelta
 from .type import Structure,Skill
 from app.character import character
+from app.industrial import industrial
 
 app = Flask(__name__)
 
 app.register_blueprint(character,url_prefix="/character")
+app.register_blueprint(industrial,url_prefix="/industrial")
 
 @app.before_request
 def before_request():
