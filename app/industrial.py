@@ -11,10 +11,7 @@ import math
 industrial = Blueprint('industrial', __name__)
 
 
-
-
-@industrial.route('/get_industry_index')
-def get_industry_index():
+def get_industry_index(id=0,system_name=""):
     '''
     工业系数
     '''
@@ -35,7 +32,7 @@ def get_industry_index():
         for item in data:
             if item['solar_system_id'] not in system:
                 pass
-            g.sqlite_client.cursor().execute('''Update market_price set manufacturing=?,TE=?,ME=?,copying=?,invention=?,reaction=?  where system_id=?''',
+            g.sqlite_client.cursor().execute('''Update system set manufacturing=?,TE=?,ME=?,copying=?,invention=?,reaction=?  where system_id=?''',
                                              (item['cost_indices'][0]['cost_index'], item['cost_indices'][1]['cost_index'],item['cost_indices'][2]['cost_index'],
                                               item['cost_indices'][3]['cost_index'],item['cost_indices'][4]['cost_index'],item['cost_indices'][5]['cost_index'],
                                               item['solar_system_id']))
@@ -43,10 +40,21 @@ def get_industry_index():
         g.sqlite_client.commit()
    
     # 返回system数据
-    result = g.sqlite_client.cursor().execute('''select name,TE,ME,manufacturing,copying,invention,reaction from system''').fetchall()
-    return jsonify(result)
+    if id != 0:
+        sql = f"select name,TE,ME,manufacturing,copying,invention,reaction from system where id = f{id}"
+    elif system_name != "": 
+        sql = f"select name,TE,ME,manufacturing,copying,invention,reaction from system where name = '{system_name}'"
+    else:
+        return None
+    result = g.sqlite_client.cursor().execute(sql).fetchone()
+    return result
 
-@industrial.route('/get_adjusted_price')
+@industrial.route('/get_industry_index')
+def  get_industry_index_api():
+    system = request.args.get('system')  
+    return jsonify(get_industry_index(system_name=system))
+
+
 def get_adjusted_price():
     result =  g.sqlite_client.cursor().execute('SELECT created_at from kv_data where key="adjusted_price"').fetchone()
 
@@ -106,8 +114,7 @@ def calc_modifier(struct,skill=None):
     cost = base_cost
     return me,te,cost
 
-@industrial.route('/get_product_info/<int:id>')
-def get_product_info(id):
+def get_modifier_info():
     structure = {"type":"tatara","rig":"T2","loc":"null"}
     skill={"industry": 5,
         "advanced_industry" : 4,
@@ -116,8 +123,7 @@ def get_product_info(id):
         "t2_science_engineering": 1,
         "encryption_methods":1,
         "reactions": 5,}
-    s = calc_modifier(structure,skill)
-    return jsonify(s)
+    return  calc_modifier(structure,skill)
 
 def get_item_name(id):
     res = g.sqlite_client.cursor().execute("select typeName from invTypes where typeID = ?",(id,)).fetchone()
@@ -155,7 +161,7 @@ def get_station_id():
     return json.loads(res[0])
 
     
-def fetch_price_data(location,ids):
+def fetch_price_data(location,ids):    
     BASE_URL = f"http://goonmetrics.apps.gnf.lt/api/price_data/?station_id={location}&type_id={{}}"
     # 将所有id分成多个批次，每个批次最多100个id
     chunk_ids = lambda ids, chunk_size=100: [ids[i:i+chunk_size] for i in range(0, len(ids), chunk_size)]
@@ -179,7 +185,7 @@ def fetch_price_data(location,ids):
     # 获取结果并保存
         for future in futures:
             result_data = future.result()
-            results.update(result_data)
+            results.update(result_data)    
     return results
 
 
@@ -198,9 +204,12 @@ def update_price(ids=[]):
         if current_time - create_time > expiration:
             update_ids.append(data[0])
     
+    if not update_ids:
+        return
+    
     for loc,loc_id in get_station_id().items():
         result = fetch_price_data(loc_id,update_ids)
-        if loc == "jita":
+        if loc == "home":
             sql = '''UPDATE market_price 
                          SET home_buy_price = ?, home_sell_price = ?, home_7d_movement = ?, home_7d_capacity = ?, 
                              updated_time = ? 
@@ -216,9 +225,23 @@ def update_price(ids=[]):
         
         g.sqlite_client.cursor().executemany(sql, insert_data)
     g.sqlite_client.commit()
-    
 
-def get_material_cost(product_id, price_type,cache=None):
+def update_industry_index_and_adjusted_price():
+    get_industry_index()
+    get_adjusted_price()
+
+def get_install_cost(ids,cost_index,cost_modifier):
+    job_base_price = 0
+    scc_tax = 0.04
+    crop_tax = 0.01
+    for input_id, input_quantity, _,_ in ids:
+        result = g.sqlite_client.cursor().execute("""select adjusted_price from adjusted_price where type_id = ?""",(input_id,)).fetchone()
+        adjusted_price = result[0] if result else None
+        job_base_price += input_quantity * adjusted_price 
+    install_price =  job_base_price * (cost_index*cost_modifier + scc_tax + crop_tax)
+    return install_price
+
+def get_material_cost(product_id, modifier, price_type, cache=None):
     """
     递归计算某个产品的 build_cost，并返回嵌套 JSON 结构
     """
@@ -227,8 +250,19 @@ def get_material_cost(product_id, price_type,cache=None):
     if product_id in cache:
         return cache[product_id]
     
-    update_price([product_id])
-    # 合并查询是否是原材料和是否存在手动价格
+    # 0.查询该产品的所有输入材料,更新价格
+    inputs = g.sqlite_client.cursor().execute("""
+        SELECT  input_id, input_quantity,output_quantity,activity_id  
+        FROM industry_products_materials 
+        WHERE product_id = ?
+    """, (product_id,)).fetchall()
+    price_id = []
+    for input_id,_, _, _ in inputs:
+        price_id.append(input_id)
+    if not price_id:
+        update_price(price_id)
+    
+    # 合并查询是否是原材料
     result = g.sqlite_client.cursor().execute("""
         SELECT m.jita_buy_price, m.jita_sell_price, m.home_buy_price, m.home_sell_price, i.name, i.category, i.volume,
             mp.build_type, mp.price
@@ -242,54 +276,74 @@ def get_material_cost(product_id, price_type,cache=None):
         return {"product_id": product_id, "name":"", "build_cost": 0}  # 没有数据，返回 0
     
     jita_buy, jita_sell, home_buy, home_sell, name, category, volume,  manual_build_type, manual_price = result
+    market_price_loc = ""
     if price_type == "buy":
         market_price = min(jita_buy+900*volume,home_buy)
-    else :
+        market_price_loc = "jita" if jita_buy+900*volume < home_buy else "home"
+    elif price_type == "sell":
         market_price = min(jita_sell+900*volume,home_sell)
+        market_price_loc = "jita" if jita_sell+900*volume < home_sell else "home"
 
-    # 是否使用手动价格
+    # 1.是否使用手动价格
     if manual_build_type == "buy":
         #存在强制购买的产品
         cost = manual_price if manual_price else market_price
-        cache[product_id] = {"product_id": product_id, "name": name, "build_cost": cost, "manual_build": "buy", "manual_price": manual_price}
+        cache[product_id] = {"product_id": product_id, "name": name, "build_cost": cost, "material_cost":cost, "manual_build": "buy", "manual_price": manual_price}
         return cache[product_id]
-
+    # 2.是否是原材料
     if category == 16:  # 原材料
         cost = market_price
-        cache[product_id] = {"product_id": product_id, "name": name, "build_cost": cost}
+        cache[product_id] = {"product_id": product_id, "name": name, "build_cost": cost, "material_cost":cost,"buy_loc": market_price_loc}
         return cache[product_id]
 
-    # 查询该产品的所有输入材料
-    inputs = g.sqlite_client.cursor().execute("""
-        SELECT  ipm.input_id, ipm.input_quantity,ipm.output_quantity 
-        FROM industry_products_materials ipm
-        WHERE ipm.product_id = ?
-    """, (product_id,)).fetchall()
-    
-    total_cost = 0
-    input_details = {}
 
-    for input_id, input_quantity, output_quantity in inputs:
-        input_data  = get_material_cost(input_id, price_type,cache)  # 递归计算输入材料的 build_cost
-        total_cost += input_quantity * input_data["build_cost"]  # 按需求量累加总成本
-        input_details[f"input_{input_id}"] = {
+    # 3.递归计算输入材料的 build_cost
+    material_cost = 0
+    input_details = []
+    me,te,cost,cost_manufacturing,cost_reaction = modifier
+    for input_id, input_quantity, output_quantity,_ in inputs:
+        input_data  = get_material_cost(input_id,modifier,price_type,cache)
+        
+        # 计算加成影响
+        input_quantity_mod = math.ceil(input_quantity * me * 0.9)
+        material_cost += input_quantity_mod * input_data["build_cost"]  
+        input_details.append({
             "material_id": input_id,
             "quantity": float(input_quantity),
             "output_quantity": float(output_quantity),
             **input_data
-        }
-    total_cost = total_cost/output_quantity #计算单价
+        })
+    
+    # 5. 计算启动制造的费用
+    cost_index = cost_manufacturing if inputs[0][3] == 1 else cost_reaction
+    install_cost = get_install_cost(inputs,cost_index,cost)
+
+    install_cost = install_cost/output_quantity
+    material_cost = material_cost/output_quantity
+    total_cost =  material_cost + install_cost
+    
     build = "Build"
+    #决定购买还是制造
+    buy_loc = ""
     if total_cost > market_price :
         total_cost = market_price # 购买还是build
         build = "Buy"
+        buy_loc = market_price_loc
     
+    # 6. 计算时间消耗
+    time =  g.sqlite_client.cursor().execute(f"select time from industry_activity_time  where product_id = {product_id}").fetchone()
+    time = time[0] if time else 0
+    time = time * te
     cache[product_id] ={
         "product_id": product_id,
         "name": name,
         "build_cost": total_cost,
+        "material_cost":material_cost,
+        "install_cost": install_cost,
+        "time" : time,
         "inputs": input_details,
-        "build" : build
+        "build" : build,
+        "buy_loc" : buy_loc,
     }
     return cache[product_id]
 
@@ -299,7 +353,12 @@ def get_build_cost(product_id):
     递归更新所有 `ids` 及其子 ID 的 build_cost
     """
     computed_costs = {}
-    computed_costs[f"product_{product_id}"] = get_material_cost(product_id, price_type="buy")
+    me,te,cost = get_modifier_info()
+    cost_index = get_industry_index(system_name = "CKX-RW")
+    update_industry_index_and_adjusted_price()
+    cost_manufacturing = cost_index[3]
+    cost_reaction = cost_index[6]
+    computed_costs[f"product_{product_id}"] = get_material_cost(product_id, (me,te,cost,cost_manufacturing,cost_reaction), price_type="sell")
     return computed_costs
 
         
