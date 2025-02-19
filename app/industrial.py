@@ -1,5 +1,5 @@
 # app/views/home.py
-from flask import Flask, jsonify, g,Blueprint,request
+from flask import Flask, jsonify, g,Blueprint,request,current_app
 import requests
 import sqlite3
 from datetime import datetime, timedelta
@@ -8,8 +8,10 @@ import json
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 import math
-industrial = Blueprint('industrial', __name__)
+import threading
+from functools import partial
 
+industrial = Blueprint('industrial', __name__)
 
 def get_industry_index(id=0,system_name=""):
     '''
@@ -156,12 +158,14 @@ def get_pi_info():
     return jsonify(s)
 
  
-def get_station_id():
-    res = g.sqlite_client.cursor().execute('''select value from kv_data where key = "station_id"''').fetchone()
+def get_station_id(cursor=None):
+    if cursor is None:
+        cursor = g.sqlite_client.cursor()
+    res = cursor.execute('''select value from kv_data where key = "station_id"''').fetchone()
     return json.loads(res[0])
 
     
-def fetch_price_data(location,ids):    
+def fetch_price_data(location,ids,app=None):    
     BASE_URL = f"http://goonmetrics.apps.gnf.lt/api/price_data/?station_id={location}&type_id={{}}"
     # 将所有id分成多个批次，每个批次最多100个id
     chunk_ids = lambda ids, chunk_size=100: [ids[i:i+chunk_size] for i in range(0, len(ids), chunk_size)]
@@ -178,6 +182,8 @@ def fetch_price_data(location,ids):
     }
     fetch_data = lambda type_ids: parse_xml(requests.get(BASE_URL.format(','.join(map(str, type_ids)))).text)
     results = {}
+    total_num = len(chunk_ids(ids)) * 100  # 总批次数
+    completed_num = 0  # 记录完成的批次
     with ThreadPoolExecutor(max_workers=20) as executor:
     # 分批次处理所有ID，并提交给线程池
         futures = [executor.submit(fetch_data, id_chunk) for id_chunk in chunk_ids(ids)]
@@ -185,30 +191,47 @@ def fetch_price_data(location,ids):
     # 获取结果并保存
         for future in futures:
             result_data = future.result()
-            results.update(result_data)    
+            results.update(result_data)
+            completed_num += 100    
+            if app:
+                with app.app_context():
+                    current_app.config['UPDATE_PRICE_TASK_PROGRESS'] = f"{completed_num}/{total_num}"
     return results
 
 
-def update_price(ids=[]):
+def update_price(ids=[],app=None):
+    if app is None:
+        with app.app_context():
+            sqlite_client = g.sqlite_client
+            cursor = g.sqlite_client.cursor()
+    else :
+        with app.app_context():
+            app.config['UPDATE_PRICE_TASK_RUNNING'] = True
+        sqlite_client = sqlite3.connect('data/data.db')
+        cursor = sqlite_client.cursor()
     if not ids:
-        data = g.sqlite_client.cursor().execute("SELECT type_id from market_price").fetchall()
+        data = cursor.execute("SELECT type_id from market_price").fetchall()
         ids = [item[0] for item in data] 
-    placeholders = ', '.join(['?'] * len(ids))  # 生成与ids长度相等的占位符
-    sql = f"SELECT type_id, updated_time FROM market_price WHERE type_id IN ({placeholders})"
-    datas = g.sqlite_client.cursor().execute(sql,tuple(ids)).fetchall()
-    expiration = timedelta(days=1)
-    update_ids=[]
-    for data in datas:
-        create_time = datetime.strptime(data[1], "%Y-%m-%d %H:%M:%S")
-        current_time = datetime.now()
-        if current_time - create_time > expiration:
-            update_ids.append(data[0])
     
-    if not update_ids:
-        return
+    if app is None:
+        placeholders = ', '.join(['?'] * len(ids))  # 生成与ids长度相等的占位符
+        sql = f"SELECT type_id, updated_time FROM market_price WHERE type_id IN ({placeholders})"
+        datas = cursor.execute(sql,tuple(ids)).fetchall()
+        expiration = timedelta(days=1)
+        update_ids=[]
+        for data in datas:
+            create_time = datetime.strptime(data[1], "%Y-%m-%d %H:%M:%S")
+            current_time = datetime.now()
+            if current_time - create_time > expiration:
+                update_ids.append(data[0])
+        
+        if not update_ids:
+            return
+    else:
+        update_ids=ids
     
-    for loc,loc_id in get_station_id().items():
-        result = fetch_price_data(loc_id,update_ids)
+    for loc,loc_id in get_station_id(cursor).items():
+        result = fetch_price_data(loc_id,update_ids,app)
         if loc == "home":
             sql = '''UPDATE market_price 
                          SET home_buy_price = ?, home_sell_price = ?, home_7d_movement = ?, home_7d_capacity = ?, 
@@ -223,8 +246,10 @@ def update_price(ids=[]):
         for id,r in result.items():
             insert_data.append((r["buy"],r["sell"],r["weekly_movement"],int(r["sell"]*r["weekly_movement"]),datetime.now().strftime("%Y-%m-%d %H:%M:%S"),id))
         
-        g.sqlite_client.cursor().executemany(sql, insert_data)
-    g.sqlite_client.commit()
+        cursor.executemany(sql, insert_data)
+    sqlite_client.commit()
+    with app.app_context():  # 确保在 Flask 上下文中修改配置
+        app.config['UPDATE_PRICE_TASK_RUNNING'] = False
 
 def update_industry_index_and_adjusted_price():
     get_industry_index()
@@ -259,7 +284,7 @@ def get_material_cost(product_id, modifier, price_type, cache=None):
     price_id = []
     for input_id,_, _, _ in inputs:
         price_id.append(input_id)
-    if not price_id:
+    if price_id:
         update_price(price_id)
     
     # 合并查询是否是原材料
@@ -362,15 +387,17 @@ def get_build_cost(product_id):
     return computed_costs
 
         
-def update_market_price(ids):
-    update_price(ids)
-
 @industrial.route('/updateprice/')
 def update_price_api():
     ids = request.args.getlist('type_id')
     if ids:
         ids = [int(item) for item in ids]  # 确保是整数列表
-    update_market_price(ids)
+    from .app import app
+    update_price_with_client = partial(update_price, app=app)
+    if (app.config['UPDATE_PRICE_TASK_RUNNING']):
+        return jsonify(f"task running,proress:{app.config['UPDATE_PRICE_TASK_PROGRESS']}")
+    thread = threading.Thread(target=update_price_with_client, daemon=True)
+    thread.start()
     return jsonify("success")
     
 
