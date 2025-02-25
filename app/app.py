@@ -7,10 +7,11 @@ from datetime import datetime, timedelta
 from .type import Structure,Skill
 from app.character import character
 from app.industrial import industrial
-from app.industrial import update_price
 app = Flask(__name__)
 app.config['UPDATE_PRICE_TASK_RUNNING'] = False
 app.config['UPDATE_PRICE_TASK_PROGRESS'] = ""
+app.config['PROFILE_TASK_RUNNING'] = False
+app.config['PROFILE_TASK_PROGRESS'] = ""
 app.register_blueprint(character,url_prefix="/character")
 app.register_blueprint(industrial,url_prefix="/industrial")
 

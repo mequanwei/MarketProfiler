@@ -1,5 +1,5 @@
 # app/views/home.py
-from flask import Flask, jsonify, g,Blueprint,request,current_app
+from flask import Flask, jsonify, g,Blueprint,request,copy_current_request_context,current_app
 import requests
 import sqlite3
 from datetime import datetime, timedelta
@@ -10,6 +10,8 @@ from collections import defaultdict
 import math
 import threading
 from functools import partial
+from typing import List, Tuple, Optional,Dict, Any
+
 
 industrial = Blueprint('industrial', __name__)
 
@@ -17,29 +19,19 @@ def get_industry_index(id=0,system_name=""):
     '''
     工业系数
     '''
-    result =  g.sqlite_client.cursor().execute('SELECT created_at from kv_data where key="system_index_cache"').fetchone()
-
-    if not result:
-        return None
-    create_time_str = result[0]
-    create_time = datetime.strptime(create_time_str, "%Y-%m-%d %H:%M:%S")
-    current_time = datetime.now()
-    expiration = timedelta(days=1)
-    if current_time - create_time > expiration:
-        # 缓存过期，更新数据
-        data = g.esi_client.get_industry_index()
-        
-        # 将工业系数解析更新到星系表
-        system = g.sqlite_client.cursor().execute('select system_id from system').fetchall()
-        for item in data:
-            if item['solar_system_id'] not in system:
-                pass
-            g.sqlite_client.cursor().execute('''Update system set manufacturing=?,TE=?,ME=?,copying=?,invention=?,reaction=?  where system_id=?''',
-                                             (item['cost_indices'][0]['cost_index'], item['cost_indices'][1]['cost_index'],item['cost_indices'][2]['cost_index'],
-                                              item['cost_indices'][3]['cost_index'],item['cost_indices'][4]['cost_index'],item['cost_indices'][5]['cost_index'],
-                                              item['solar_system_id']))
-        g.sqlite_client.cursor().execute('''Update kv_data set created_at=? where key="system_index_cache"''',(current_time.strftime("%Y-%m-%d %H:%M:%S"),))
-        g.sqlite_client.commit()
+    # 缓存过期，更新数据
+    data = g.esi_client.get_industry_index()
+    
+    # 将工业系数解析更新到星系表
+    system = g.sqlite_client.cursor().execute('select system_id from system').fetchall()
+    for item in data:
+        if item['solar_system_id'] not in system:
+            pass
+        g.sqlite_client.cursor().execute('''Update system set manufacturing=?,TE=?,ME=?,copying=?,invention=?,reaction=?  where system_id=?''',
+                                            (item['cost_indices'][0]['cost_index'], item['cost_indices'][1]['cost_index'],item['cost_indices'][2]['cost_index'],
+                                            item['cost_indices'][3]['cost_index'],item['cost_indices'][4]['cost_index'],item['cost_indices'][5]['cost_index'],
+                                            item['solar_system_id']))
+    g.sqlite_client.commit()
    
     # 返回system数据
     if id != 0:
@@ -55,30 +47,6 @@ def get_industry_index(id=0,system_name=""):
 def  get_industry_index_api():
     system = request.args.get('system')  
     return jsonify(get_industry_index(system_name=system))
-
-
-def get_adjusted_price():
-    result =  g.sqlite_client.cursor().execute('SELECT created_at from kv_data where key="adjusted_price"').fetchone()
-
-    if not result:
-        return None
-    create_time_str = result[0]
-    create_time = datetime.strptime(create_time_str, "%Y-%m-%d %H:%M:%S")
-    current_time = datetime.now()
-    expiration = timedelta(days=1)
-    if current_time - create_time > expiration:
-        # 缓存过期，更新数据
-        adjust_price_data = g.esi_client.get_adjusted_price()
-        adjusted_price = [(float(item["adjusted_price"]),int(item["type_id"])) for item in adjust_price_data if "adjusted_price" in item]
-        # 将价格更新到调整价格表
-        for item in adjusted_price:
-            g.sqlite_client.cursor().execute('''update adjusted_price set adjusted_price = ?  where type_id = ? ''',item)
-        g.sqlite_client.cursor().execute('''Update kv_data set created_at=? where key="adjusted_price"''',(current_time.strftime("%Y-%m-%d %H:%M:%S"),))
-        g.sqlite_client.commit()
-   
-    # 返回
-    result = g.sqlite_client.cursor().execute('''select * from adjusted_price''').fetchall()
-    return jsonify(result)
 
 def calc_modifier(struct,skill=None):
     '''
@@ -157,15 +125,8 @@ def get_pi_info():
         s["input"].append(input)
     return jsonify(s)
 
- 
-def get_station_id(cursor=None):
-    if cursor is None:
-        cursor = g.sqlite_client.cursor()
-    res = cursor.execute('''select value from kv_data where key = "station_id"''').fetchone()
-    return json.loads(res[0])
-
-    
-def fetch_price_data(location,ids,app=None):    
+     
+def fetch_price_data(location,ids):    
     BASE_URL = f"http://goonmetrics.apps.gnf.lt/api/price_data/?station_id={location}&type_id={{}}"
     # 将所有id分成多个批次，每个批次最多100个id
     chunk_ids = lambda ids, chunk_size=100: [ids[i:i+chunk_size] for i in range(0, len(ids), chunk_size)]
@@ -173,7 +134,7 @@ def fetch_price_data(location,ids,app=None):
     parse_xml = lambda response_text: {
         type_elem.get('id'): {
             # 'updated': type_elem.find('updated').text,
-            'weekly_movement': float(type_elem.find('./all/weekly_movement').text),
+            'weekly_movement': int(float(type_elem.find('./all/weekly_movement').text)),
             'buy': float(type_elem.find('./buy/max').text),
             # 'buy_vol': type_elem.find('./buy/listed').text,
             'sell': float(type_elem.find('./sell/min').text),
@@ -182,8 +143,7 @@ def fetch_price_data(location,ids,app=None):
     }
     fetch_data = lambda type_ids: parse_xml(requests.get(BASE_URL.format(','.join(map(str, type_ids)))).text)
     results = {}
-    total_num = len(chunk_ids(ids)) * 100  # 总批次数
-    completed_num = 0  # 记录完成的批次
+
     with ThreadPoolExecutor(max_workers=20) as executor:
     # 分批次处理所有ID，并提交给线程池
         futures = [executor.submit(fetch_data, id_chunk) for id_chunk in chunk_ids(ids)]
@@ -192,283 +152,356 @@ def fetch_price_data(location,ids,app=None):
         for future in futures:
             result_data = future.result()
             results.update(result_data)
-            completed_num += 100    
-            if app:
-                with app.app_context():
-                    current_app.config['UPDATE_PRICE_TASK_PROGRESS'] = f"{completed_num}/{total_num}"
     return results
 
 
-def update_price(ids=[],app=None):
-    if app is None:
-        with app.app_context():
-            sqlite_client = g.sqlite_client
-            cursor = g.sqlite_client.cursor()
-    else :
-        with app.app_context():
-            app.config['UPDATE_PRICE_TASK_RUNNING'] = True
-        sqlite_client = sqlite3.connect('data/data.db')
-        cursor = sqlite_client.cursor()
+def update_market_price(ids=[]):
+    sqlite_client = sqlite3.connect('data/data.db')
+    cursor = sqlite_client.cursor()
     if not ids:
-        data = cursor.execute("SELECT type_id from market_price").fetchall()
+        data = cursor.execute("SELECT type_id from items").fetchall()
         ids = [item[0] for item in data] 
     
-    if app is None:
-        placeholders = ', '.join(['?'] * len(ids))  # 生成与ids长度相等的占位符
-        sql = f"SELECT type_id, updated_time FROM market_price WHERE type_id IN ({placeholders})"
-        datas = cursor.execute(sql,tuple(ids)).fetchall()
-        expiration = timedelta(days=1)
-        update_ids=[]
-        for data in datas:
-            create_time = datetime.strptime(data[1], "%Y-%m-%d %H:%M:%S")
-            current_time = datetime.now()
-            if current_time - create_time > expiration:
-                update_ids.append(data[0])
-        
-        if not update_ids:
-            return
-    else:
-        update_ids=ids
-    
-    for loc,loc_id in get_station_id(cursor).items():
-        result = fetch_price_data(loc_id,update_ids,app)
+    station_json = cursor.execute('''select value from kv_data where key = "station_id"''').fetchone()[0]
+
+    for loc,loc_id in json.loads(station_json).items():
+        result = fetch_price_data(loc_id,ids)
         if loc == "home":
-            sql = '''UPDATE market_price 
-                         SET home_buy_price = ?, home_sell_price = ?, home_7d_movement = ?, home_7d_capacity = ?, 
-                             updated_time = ? 
+            sql = '''UPDATE items 
+                         SET home_buy_price = ?, home_sell_price = ?, home_7d_movement = ?, home_7d_capacity = ?,updated_time = ?
                          WHERE type_id = ?'''
         else :
-            sql = '''UPDATE market_price 
-                         SET jita_buy_price = ?, jita_sell_price = ?, jita_7d_movement = ?, jita_7d_capacity = ?, 
-                             updated_time = ? 
+            sql = '''UPDATE items 
+                         SET jita_buy_price = ?, jita_sell_price = ?, jita_7d_movement = ?, jita_7d_capacity = ?,updated_time = ?
                          WHERE type_id = ?'''
         insert_data=[]
         for id,r in result.items():
             insert_data.append((r["buy"],r["sell"],r["weekly_movement"],int(r["sell"]*r["weekly_movement"]),datetime.now().strftime("%Y-%m-%d %H:%M:%S"),id))
-        
         cursor.executemany(sql, insert_data)
     sqlite_client.commit()
-    with app.app_context():  # 确保在 Flask 上下文中修改配置
-        app.config['UPDATE_PRICE_TASK_RUNNING'] = False
 
-def update_industry_index_and_adjusted_price():
+def update_adjust_price():
+    adjust_price_data = g.esi_client.get_adjusted_price()
+    adjusted_price = [(float(item["adjusted_price"]),int(item["type_id"])) for item in adjust_price_data if "adjusted_price" in item]
+    # 将价格更新到调整价格表
+    for item in adjusted_price:
+        g.sqlite_client.cursor().execute('''update items set adjusted_price = ?  where type_id = ? ''',item)
+    g.sqlite_client.commit()
+
+@industrial.route('/update_all_network_data/')
+def update_all_network_data():
     get_industry_index()
-    get_adjusted_price()
+    update_adjust_price()
+    thread = threading.Thread(target=update_market_price, daemon=True)
+    thread.start()
+    return jsonify("updated")
 
-def get_install_cost(ids,cost_index,cost_modifier):
-    job_base_price = 0
+
+def preload_data() -> None:
+    """
+    Preload items and industry_products_materials into memory.
+    """
+    # Global in-memory caches
+    item_cache: Dict[int, Dict[str, float]] = {}
+    materials_cache: Dict[int, List[Tuple[int, float, float, int]]] = {}
+    manual_price_cache: Dict[int, Tuple[str, float]] = {}
+    time_cache: Dict[int, float] = {}
+    cursor = g.sqlite_client.cursor()
+
+    # Preload items (combined_items)
+    items = cursor.execute("""
+        SELECT type_id, jita_buy_price, jita_sell_price, home_buy_price, home_sell_price,
+               name, category, volume, adjusted_price
+        FROM items
+    """).fetchall()
+    for row in items:
+        item_cache[row[0]] = {
+            "jita_buy_price": row[1],
+            "jita_sell_price": row[2],
+            "home_buy_price": row[3],
+            "home_sell_price": row[4],
+            "name": row[5],
+            "category": row[6],
+            "volume": row[7],
+            "adjusted_price": row[8] or 0.0  # Default to 0 if None
+        }
+
+    # Preload industry_products_materials
+    materials = cursor.execute("""
+        SELECT product_id, input_id, input_quantity, output_quantity, activity_id
+        FROM industry_products_materials where activity_id in (1,6)
+    """).fetchall()
+    for product_id, input_id, input_quantity, output_quantity, activity_id in materials:
+        if product_id not in materials_cache:
+            materials_cache[product_id] = []
+        materials_cache[product_id].append((input_id, input_quantity, output_quantity, activity_id))
+    
+    # Preload manual_price
+    manual_prices = cursor.execute("""
+        SELECT type_id, build_type, price
+        FROM manual_price
+    """).fetchall()
+    manual_price_cache.update((row[0], (row[1], row[2] or 0.0)) for row in manual_prices)
+
+    # Preload industry_activity_time
+    times = cursor.execute("""
+        SELECT product_id, time
+        FROM industry_activity_time
+    """).fetchall()
+    time_cache.update((row[0], row[1] or 0.0) for row in times)
+
+
+    return item_cache,materials_cache,manual_price_cache,time_cache
+
+def get_install_cost(
+    ids: List[Tuple[int, float, float, int]],
+    cost_index: float,
+    cost_modifier: float,
+    item_cache = None,
+    db=None  # Kept for compatibility, but unused with preloading
+) -> float:
+    """
+    Calculate installation cost using preloaded item_cache.
+
+    Args:
+        ids: List of (input_id, input_quantity, output_quantity, activity_id).
+        cost_index: Cost index factor.
+        cost_modifier: Base cost adjustment factor.
+        db: Ignored if preloading is used.
+
+    Returns:
+        Total installation cost.
+    """
+    if not ids:
+        return 0.0
+    if  not item_cache:
+        item_cache = {}
+
+    job_base_price = 0.0
+    missing_ids = []
+    for input_id, input_quantity, _, _ in ids:
+        item = item_cache.get(input_id)
+        if item:
+            adjusted_price = item["adjusted_price"]
+        else:
+            adjusted_price = 0.0
+            if input_id not in missing_ids:
+                missing_ids.append(input_id)
+        job_base_price += input_quantity * adjusted_price
+
+    if missing_ids:
+        print(f"Warning: No adjusted_price found for input_ids: {missing_ids}")
+
     scc_tax = 0.04
     crop_tax = 0.01
-    for input_id, input_quantity, _,_ in ids:
-        result = g.sqlite_client.cursor().execute("""select adjusted_price from adjusted_price where type_id = ?""",(input_id,)).fetchone()
-        adjusted_price = result[0] if result else None
-        job_base_price += input_quantity * adjusted_price 
-    install_price =  job_base_price * (cost_index*cost_modifier + scc_tax + crop_tax)
+    install_price = job_base_price * (cost_index * cost_modifier + scc_tax + crop_tax)
     return install_price
 
-def get_material_cost(product_id, modifier, price_type, cache=None):
-    """
-    递归计算某个产品的 build_cost，并返回嵌套 JSON 结构
-    """
+
+def get_material_cost(
+    product_id: int,
+    modifier: Tuple[float, float, float, float, float],
+    price_type: str,
+    db=None,
+    db_cache = None,
+    cache: Optional[Dict[int, Dict[str, Any]]] = None
+) -> Dict[str, Any]:
     if cache is None:
         cache = {}
     if product_id in cache:
         return cache[product_id]
-    
-    # 0.查询该产品的所有输入材料,更新价格
-    inputs = g.sqlite_client.cursor().execute("""
-        SELECT  input_id, input_quantity,output_quantity,activity_id  
-        FROM industry_products_materials 
-        WHERE product_id = ?
-    """, (product_id,)).fetchall()
-    price_id = []
-    for input_id,_, _, _ in inputs:
-        price_id.append(input_id)
-    if price_id:
-        update_price(price_id)
-    
-    # 合并查询是否是原材料
-    result = g.sqlite_client.cursor().execute("""
-        SELECT m.jita_buy_price, m.jita_sell_price, m.home_buy_price, m.home_sell_price, i.name, i.category, i.volume,
-            mp.build_type, mp.price
-        FROM market_price m
-        JOIN item i ON m.type_id = i.type_id
-        LEFT JOIN manual_price mp ON m.type_id = mp.type_id
-        WHERE m.type_id = ?
-    """, (product_id,)).fetchone()
+    if db is None:
+        db = g.sqlite_client  # Only needed for time query if not preloaded
+    if db_cache is None:
+        raise ValueError("db cache is None")
+    item_cache,materials_cache,manual_price_cache,time_cache = db_cache
+    # Fetch from item_cache
+    item = item_cache.get(product_id)
+    if not item:
+        print(f"No type {product_id}")
+        return {"product_id": product_id, "name": "", "build_cost": 0}
 
-    if not result:
-        return {"product_id": product_id, "name":"", "build_cost": 0}  # 没有数据，返回 0
-    
-    jita_buy, jita_sell, home_buy, home_sell, name, category, volume,  manual_build_type, manual_price = result
-    market_price_loc = ""
-    if price_type == "buy":
-        market_price = min(jita_buy+900*volume,home_buy)
-        market_price_loc = "jita" if jita_buy+900*volume < home_buy else "home"
-    elif price_type == "sell":
-        market_price = min(jita_sell+900*volume,home_sell)
-        market_price_loc = "jita" if jita_sell+900*volume < home_sell else "home"
+    jita_buy = item["jita_buy_price"]
+    jita_sell = item["jita_sell_price"]
+    home_buy = item["home_buy_price"]
+    home_sell = item["home_sell_price"]
+    name = item["name"]
+    category = item["category"]
+    volume = item["volume"]
 
-    # 1.是否使用手动价格
+    # Manual price logic (assuming manual_price isn’t in items yet)
+    manual_price_data = manual_price_cache.get(product_id)
+    manual_build_type = manual_price_data[0] if manual_price_data else ""
+    manual_price = manual_price_data[1] or 0 if manual_price_data else 0
+
+    # Market price calculation
+    def get_market_price(buy_price: float, sell_price: float) -> Tuple[float, str]:
+        price = buy_price if price_type == "buy" else sell_price
+        jita_price = price + 900 * volume
+        home_price = home_buy if price_type == "buy" else home_sell
+        if home_price == 0:
+            return (jita_price, "jita")
+        return (min(jita_price, home_price), "jita" if jita_price < home_price else "home")
+
+    market_price, market_price_loc = get_market_price(jita_buy, jita_sell)
+
+    # Case 1: Manual buy
     if manual_build_type == "buy":
-        #存在强制购买的产品
         cost = manual_price if manual_price else market_price
-        cache[product_id] = {"product_id": product_id, "name": name, "build_cost": cost, "material_cost":cost, "manual_build": "buy", "manual_price": manual_price}
+        cache[product_id] = {
+            "product_id": product_id, "name": name, "build_cost": cost, "material_cost": cost,
+            "manual_build": "buy", "manual_price": manual_price, "buy_loc": market_price_loc
+        }
         return cache[product_id]
-    # 2.是否是原材料
-    if category == 16:  # 原材料
+
+    # Case 2: Raw material
+    if category == 16:
         cost = market_price
-        cache[product_id] = {"product_id": product_id, "name": name, "build_cost": cost, "material_cost":cost,"buy_loc": market_price_loc}
+        cache[product_id] = {
+            "product_id": product_id, "name": name, "build_cost": cost, "material_cost": cost,
+            "buy_loc": market_price_loc
+        }
         return cache[product_id]
 
+    # Case 3: Recursive calculation
+    inputs = materials_cache.get(product_id, [])
+    if not inputs:
+        cache[product_id] = {
+            "product_id": product_id, "name": name, "build_cost": market_price,
+            "material_cost": 0, "install_cost": 0, "buy_loc": market_price_loc
+        }
+        return cache[product_id]
 
-    # 3.递归计算输入材料的 build_cost
     material_cost = 0
     input_details = []
-    me,te,cost,cost_manufacturing,cost_reaction = modifier
-    for input_id, input_quantity, output_quantity,_ in inputs:
-        input_data  = get_material_cost(input_id,modifier,price_type,cache)
-        
-        # 计算加成影响
-        input_quantity_mod = math.ceil(input_quantity * me * 0.9)
-        material_cost += input_quantity_mod * input_data["build_cost"]  
-        input_details.append({
-            "material_id": input_id,
-            "quantity": float(input_quantity),
-            "output_quantity": float(output_quantity),
-            **input_data
-        })
-    
-    # 5. 计算启动制造的费用
-    cost_index = cost_manufacturing if inputs[0][3] == 1 else cost_reaction
-    install_cost = get_install_cost(inputs,cost_index,cost)
+    me, te, cost, cost_manufacturing, cost_reaction = modifier
 
-    install_cost = install_cost/output_quantity
-    material_cost = material_cost/output_quantity
-    total_cost =  material_cost + install_cost
-    
-    build = "Build"
-    #决定购买还是制造
+    for input_id, input_quantity, output_quantity, activity_id in inputs:
+        input_data = get_material_cost(input_id, modifier, price_type, db_cache=db_cache, cache=cache)
+        input_quantity_mod = math.ceil(input_quantity * me * 0.9)
+        material_cost += input_quantity_mod * input_data["build_cost"]
+        input_details.append({
+            "material_id": input_id, "quantity": float(input_quantity),
+            "output_quantity": float(output_quantity), **input_data
+        })
+
+    cost_index = cost_manufacturing if inputs[0][3] == 1 else cost_reaction
+    install_cost = get_install_cost(inputs, cost_index, cost, item_cache, db) / inputs[0][2]
+    material_cost /= inputs[0][2]
+    total_cost = material_cost + install_cost
+
+    build_type = "Build"
     buy_loc = ""
-    if total_cost > market_price :
-        total_cost = market_price # 购买还是build
-        build = "Buy"
+    if total_cost > market_price:
+        total_cost = market_price
+        build_type = "Buy"
         buy_loc = market_price_loc
-    
-    # 6. 计算时间消耗
-    time =  g.sqlite_client.cursor().execute(f"select time from industry_activity_time  where product_id = {product_id}").fetchone()
-    time = time[0] if time else 0
-    time = time * te
-    cache[product_id] ={
-        "product_id": product_id,
-        "name": name,
-        "build_cost": total_cost,
-        "material_cost":material_cost,
-        "install_cost": install_cost,
-        "time" : time,
-        "inputs": input_details,
-        "build" : build,
-        "buy_loc" : buy_loc,
+
+
+    time_data = time_cache.get(product_id)
+    time = time_data * te if time_data else 0
+
+    cache[product_id] = {
+        "product_id": product_id, "name": name, "build_cost": total_cost,
+        "material_cost": material_cost, "install_cost": install_cost, "time": time,
+        "inputs": input_details, "build": build_type, "buy_loc": buy_loc
     }
     return cache[product_id]
-
 
 def get_build_cost(product_id):
     """
     递归更新所有 `ids` 及其子 ID 的 build_cost
     """
+    item_cache,materials_cache,manual_price_cache,time_cache = preload_data()
+    db_cache =(item_cache,materials_cache,manual_price_cache,time_cache) 
+    cursor = g.sqlite_client.cursor()
+    
     computed_costs = {}
     me,te,cost = get_modifier_info()
     cost_index = get_industry_index(system_name = "CKX-RW")
-    update_industry_index_and_adjusted_price()
     cost_manufacturing = cost_index[3]
     cost_reaction = cost_index[6]
-    computed_costs[f"product_{product_id}"] = get_material_cost(product_id, (me,te,cost,cost_manufacturing,cost_reaction), price_type="sell")
+    computed_costs[f"product_{product_id}"] = get_material_cost(product_id, (me,te,cost,cost_manufacturing,cost_reaction), price_type="sell",db_cache = db_cache)
     return computed_costs
-
-        
-@industrial.route('/updateprice/')
-def update_price_api():
-    ids = request.args.getlist('type_id')
-    if ids:
-        ids = [int(item) for item in ids]  # 确保是整数列表
-    from .app import app
-    update_price_with_client = partial(update_price, app=app)
-    if (app.config['UPDATE_PRICE_TASK_RUNNING']):
-        return jsonify(f"task running,proress:{app.config['UPDATE_PRICE_TASK_PROGRESS']}")
-    thread = threading.Thread(target=update_price_with_client, daemon=True)
-    thread.start()
-    return jsonify("success")
-    
-
-def get_product_tree(product_id):
-    """
-    递归查询产品的原材料组成，并计算总需求量。
-    """
-    def query_inputs(product_id):
-        """
-        查询该 product_id 作为 output 所需的 inputs。
-        """
-        query = """
-        SELECT 
-            ipm.product_id, ipm.output_quantity, ipm.input_id, ipm.input_quantity, 
-            input_item.name, input_item.category, input_item.volume
-        FROM industry_products_materials ipm
-        JOIN item AS input_item ON ipm.input_id = input_item.type_id
-        WHERE ipm.activity_id in (1,6)  AND ipm.product_id = ?
-        """
-        cursor = g.sqlite_client.cursor().execute(query, (product_id,))
-        return cursor.fetchall()
-    
-    def build_tree(product_id):
-        """
-        递归构建材料树，并计算生产轮数。
-        """
-        inputs = query_inputs(product_id)
-        if not inputs:
-            return None  # 该产品没有输入材料
-        
-        output_quantity = inputs[0][1]  # 使用数据库中的 output_quantity
-        input_data = {}
-        total_materials = defaultdict(float)
-
-        for row in inputs:
-            _, out_qty, input_id, input_qty, name, category, volume = row
-
-            # 计算所需原材料或中间产品的数量
-            required_input_qty = input_qty  # 需求量
-            production_rounds = math.ceil(required_input_qty / out_qty)  # 计算生产轮数
-
-            if category == 16:  # 原材料
-                input_data[name] = {"quantity": required_input_qty}
-                total_materials[name] += required_input_qty
-            else:  # 中间材料
-                sub_tree = build_tree(input_id)
-                if sub_tree:
-                    input_data[name] = {
-                        "quantity": required_input_qty,
-                        "production_rounds": production_rounds,
-                        "details": sub_tree["input"]
-                    }
-                    for key, value in sub_tree["total"].items():
-                        total_materials[key] += value  # 累加原材料需求量
-
-        return {
-            "output_name": g.sqlite_client.cursor().execute("SELECT name FROM item WHERE type_id = ?", (product_id,)).fetchone()[0],
-            "output_quantity": output_quantity,
-            "input": input_data,
-            "total": dict(total_materials)
-        }
-
-    return build_tree(product_id)
 
 @industrial.route('/get_product_tree/')
 def get_product_tree_api():
     name = request.args.get('name')  
-    data = g.sqlite_client.cursor().execute(f"SELECT type_id FROM item WHERE name = '{name}' collate nocase").fetchone()
+    data = g.sqlite_client.cursor().execute(f"SELECT type_id FROM items WHERE name = '{name}' collate nocase").fetchone()
     if not data:
         return jsonify(None)
-    # res=get_product_tree(data[0])
     res = get_build_cost(data[0])
     
     return jsonify(res)
+
+def update_all_build_cost(params):
+    item_cache,materials_cache,manual_price_cache,time_cache = preload_data()
+    db_cache =(item_cache,materials_cache,manual_price_cache,time_cache) 
+    cursor = g.sqlite_client.cursor()
+    items = cursor.execute('''select type_id from items''').fetchall()
+
+    id = [item[0] for item in items]
+    result = []
+    cache = {}
+    for i in id:
+        build_cost =  get_material_cost(i, params, price_type="sell",db_cache = db_cache,cache = cache)["build_cost"]
+        result.append((build_cost,i))
+    cursor.executemany("UPDATE items SET build_cost = ? WHERE type_id = ?",result)
+    g.sqlite_client.commit()
+        
+@industrial.route('/updatebuildcost/')
+def update_build_cost_api():
+    me,te,cost = get_modifier_info()
+    cost_index = get_industry_index(system_name = "CKX-RW")
+    cost_manufacturing = cost_index[3]
+    cost_reaction = cost_index[6]
+    params = (me,te,cost,cost_manufacturing,cost_reaction)
+    update_all_build_cost(params)
+    return jsonify("success")
+
+@industrial.route('/updateallbuildcost/')
+def update_all_build_cost_api():
+    data = g.sqlite_client.cursor().execute("select value,created_at from kv_data where key = 'build_cost_update'").fetchone()
+    running_flag = False
+    create_time = datetime.strptime(data[1], "%Y-%m-%d %H:%M:%S")
+    if data[0] == "running" and datetime.now() - create_time < timedelta(minutes=10):
+            running_flag = True
+    running_flag = False
+    if not running_flag :
+        g.sqlite_client.cursor().execute("update kv_data set value= 'running', created_at = ? where key = 'build_cost_update'",(datetime.now().strftime("%Y-%m-%d %H:%M:%S"),))
+        g.sqlite_client.commit()
+        me,te,cost = get_modifier_info()
+        cost_index = get_industry_index(system_name = "CKX-RW")
+        cost_manufacturing = cost_index[3]
+        cost_reaction = cost_index[6]
+        params = (me,te,cost,cost_manufacturing,cost_reaction)
+        thread = threading.Thread(target=update_all_build_cost,args=(params,),daemon=True)
+        thread.start()
+        thread.join()
+        return jsonify("success")
+    else :
+        return jsonify(f"task running")
+    
+@industrial.route('/marketprofile/')
+def market_profile_api():
+    items = g.sqlite_client.cursor().execute('''select * from items''').fetchall()
+    result = []
+    for item in items:
+        try:
+            type_id,name,category,_, build_cost,_,home_buy_price,home_sell_price,home_7d_movement,home_7d_capacity,jita_buy_price,jita_sell_price,jita_7d_movement,jita_7d_capacity,_  = item 
+            if home_7d_capacity < 1000000000 :
+                continue
+            margin_p = (home_sell_price - build_cost) / build_cost
+            if margin_p > 0:
+                result.append({"margin_p":margin_p,"details":item})
+        except:
+            pass
+    
+    # 按照内层字典中'count'键的值进行排序
+    result.sort(key=lambda x: x["margin_p"],reverse=True)
+    return result
+    
+    
+
+
+        

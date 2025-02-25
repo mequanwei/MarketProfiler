@@ -6,4 +6,4 @@ RUN apk add --no-cache sqlite
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 设置默认命令
-CMD ["gunicorn", "--workers=4", "--bind=0.0.0.0:5000", "--reload", "app.app:app"]
+CMD ["gunicorn", "--workers=1", "--bind=0.0.0.0:5000", "--reload", "app.app:app"]
