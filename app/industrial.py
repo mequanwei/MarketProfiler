@@ -461,7 +461,7 @@ def market_profile_api():
     for item in items:
         try:
             type_id,name,category,_, build_cost,_,home_buy_price,home_sell_price,home_7d_movement,home_7d_capacity,jita_buy_price,jita_sell_price,jita_7d_movement,jita_7d_capacity,_  = item 
-            if home_7d_capacity < 1000000000 :
+            if home_7d_capacity < 100000000 :
                 continue
             margin_p = (home_sell_price - build_cost) / build_cost
             if margin_p > 0:
@@ -471,7 +471,25 @@ def market_profile_api():
     
     # 按照内层字典中'count'键的值进行排序
     result.sort(key=lambda x: x["margin_p"],reverse=True)
-    return result
+    result_new=[]
+    for i in result:
+        margin_p = i["margin_p"]
+        type_id,name,category,_, build_cost,_,home_buy_price,home_sell_price,home_7d_movement,home_7d_capacity,jita_buy_price,jita_sell_price,jita_7d_movement,jita_7d_capacity,_  = i["details"]
+        d = {}
+        d["typeID"] = type_id
+        d["name"] = name
+        d["build_cost"] = build_cost
+        d["home_buy_price"] = home_buy_price
+        d["home_sell_price"] = home_sell_price
+        d["home_7d_movement"] = home_7d_movement
+        d["home_7d_capacity"] = home_7d_capacity
+        d["jita_buy_price"] = jita_buy_price
+        d["jita_sell_price"] = jita_sell_price
+        d["jita_7d_movement"] = jita_7d_movement
+        d["jita_7d_capacity"] = jita_7d_capacity
+        d["margin_p"] = margin_p
+        result_new.append(d) 
+    return jsonify(result_new)
     
     
 

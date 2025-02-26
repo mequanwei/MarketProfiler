@@ -8,17 +8,20 @@
     </div>
     <div v-if="result">
       <h2>Result</h2>
-      <ProductTable :products="result" />
+      <!-- 根据 currentView 显示不同的组件 -->
+      <ProductTable v-if="currentView === 'BOM'" :products="result" />
+      <MarketDataView v-if="currentView === 'MarketData'" :data="result" />
     </div>
   </div>
 </template>
 
 <script>
 import ProductTable from './components/ProductTable.vue';
+import MarketDataView from './components/MarketDataView.vue';
 
 export default {
   name: 'App',
-  components: { ProductTable },
+  components: { ProductTable,MarketDataView },
   data() {
     return {
       name: '',
@@ -32,6 +35,7 @@ export default {
         const response = await fetch(`/backend/industrial/get_product_tree/?name=${encodeURIComponent(this.name)}`);
         if (!response.ok) throw new Error('请求失败');
         this.result = await response.json();
+        this.currentView = 'BOM';
       } catch (error) {
         console.error(error);
         alert('获取产品树数据失败，请检查后端服务');
@@ -42,6 +46,7 @@ export default {
         const response = await fetch(`/backend/industrial/marketprofile/`);
         if (!response.ok) throw new Error('请求失败');
         this.result = await response.json();
+        this.currentView = 'MarketData';
       } catch (error) {
         console.error(error);
         alert('获取市场数据失败，请检查后端服务');
