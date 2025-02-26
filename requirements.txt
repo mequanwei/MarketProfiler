@@ -2,7 +2,4 @@ Flask
 redis[hiredis]
 gunicorn
 requests
-pyjwt
-cryptography
 jwt
-flask-apscheduler

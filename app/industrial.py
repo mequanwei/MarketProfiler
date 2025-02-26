@@ -15,7 +15,7 @@ from typing import List, Tuple, Optional,Dict, Any
 
 industrial = Blueprint('industrial', __name__)
 
-def get_industry_index(id=0,system_name=""):
+def update_industry_index():
     '''
     工业系数
     '''
@@ -33,20 +33,15 @@ def get_industry_index(id=0,system_name=""):
                                             item['solar_system_id']))
     g.sqlite_client.commit()
    
-    # 返回system数据
-    if id != 0:
-        sql = f"select name,TE,ME,manufacturing,copying,invention,reaction from system where id = f{id}"
-    elif system_name != "": 
-        sql = f"select name,TE,ME,manufacturing,copying,invention,reaction from system where name = '{system_name}'"
-    else:
-        return None
+def get_industry_index(system_name):
+    sql = f"select name,TE,ME,manufacturing,copying,invention,reaction from system where name = '{system_name}'"
     result = g.sqlite_client.cursor().execute(sql).fetchone()
     return result
 
 @industrial.route('/get_industry_index')
 def  get_industry_index_api():
-    system = request.args.get('system')  
-    return jsonify(get_industry_index(system_name=system))
+    system = request.args.get('system') 
+    return jsonify(get_industry_index(system))
 
 def calc_modifier(struct,skill=None):
     '''
@@ -190,7 +185,7 @@ def update_adjust_price():
 
 @industrial.route('/update_all_network_data/')
 def update_all_network_data():
-    get_industry_index()
+    update_industry_index()
     update_adjust_price()
     thread = threading.Thread(target=update_market_price, daemon=True)
     thread.start()
@@ -381,10 +376,10 @@ def get_material_cost(
         input_quantity_mod = math.ceil(input_quantity * me * 0.9)
         material_cost += input_quantity_mod * input_data["build_cost"]
         input_details.append({
-            "material_id": input_id, "quantity": float(input_quantity),
-            "output_quantity": float(output_quantity), **input_data
+             "require_quantity": float(input_quantity_mod),
+             **input_data
         })
-
+    
     cost_index = cost_manufacturing if inputs[0][3] == 1 else cost_reaction
     install_cost = get_install_cost(inputs, cost_index, cost, item_cache, db) / inputs[0][2]
     material_cost /= inputs[0][2]
@@ -404,17 +399,16 @@ def get_material_cost(
     cache[product_id] = {
         "product_id": product_id, "name": name, "build_cost": total_cost,
         "material_cost": material_cost, "install_cost": install_cost, "time": time,
-        "inputs": input_details, "build": build_type, "buy_loc": buy_loc
+        "inputs": input_details, "build": build_type, "buy_loc": buy_loc,"output_quantity": float(output_quantity)
     }
     return cache[product_id]
 
-def get_build_cost(product_id):
+def get_product_tree(product_id):
     """
     递归更新所有 `ids` 及其子 ID 的 build_cost
     """
     item_cache,materials_cache,manual_price_cache,time_cache = preload_data()
     db_cache =(item_cache,materials_cache,manual_price_cache,time_cache) 
-    cursor = g.sqlite_client.cursor()
     
     computed_costs = {}
     me,te,cost = get_modifier_info()
@@ -430,11 +424,11 @@ def get_product_tree_api():
     data = g.sqlite_client.cursor().execute(f"SELECT type_id FROM items WHERE name = '{name}' collate nocase").fetchone()
     if not data:
         return jsonify(None)
-    res = get_build_cost(data[0])
+    res = get_product_tree(data[0])
     
     return jsonify(res)
 
-def update_all_build_cost(params):
+def update_build_cost(params):
     item_cache,materials_cache,manual_price_cache,time_cache = preload_data()
     db_cache =(item_cache,materials_cache,manual_price_cache,time_cache) 
     cursor = g.sqlite_client.cursor()
@@ -456,31 +450,9 @@ def update_build_cost_api():
     cost_manufacturing = cost_index[3]
     cost_reaction = cost_index[6]
     params = (me,te,cost,cost_manufacturing,cost_reaction)
-    update_all_build_cost(params)
+    update_build_cost(params)
     return jsonify("success")
 
-@industrial.route('/updateallbuildcost/')
-def update_all_build_cost_api():
-    data = g.sqlite_client.cursor().execute("select value,created_at from kv_data where key = 'build_cost_update'").fetchone()
-    running_flag = False
-    create_time = datetime.strptime(data[1], "%Y-%m-%d %H:%M:%S")
-    if data[0] == "running" and datetime.now() - create_time < timedelta(minutes=10):
-            running_flag = True
-    running_flag = False
-    if not running_flag :
-        g.sqlite_client.cursor().execute("update kv_data set value= 'running', created_at = ? where key = 'build_cost_update'",(datetime.now().strftime("%Y-%m-%d %H:%M:%S"),))
-        g.sqlite_client.commit()
-        me,te,cost = get_modifier_info()
-        cost_index = get_industry_index(system_name = "CKX-RW")
-        cost_manufacturing = cost_index[3]
-        cost_reaction = cost_index[6]
-        params = (me,te,cost,cost_manufacturing,cost_reaction)
-        thread = threading.Thread(target=update_all_build_cost,args=(params,),daemon=True)
-        thread.start()
-        thread.join()
-        return jsonify("success")
-    else :
-        return jsonify(f"task running")
     
 @industrial.route('/marketprofile/')
 def market_profile_api():
