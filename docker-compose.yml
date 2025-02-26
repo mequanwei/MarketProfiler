@@ -28,7 +28,17 @@ services:
     volumes:
       - ./data:/data
     command: python -m sqlite_web -H 0.0.0.0 -p 8750 /data/data.db
-
+  vue-cli:
+    build:
+      context: .
+      dockerfile: vue_Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "8808:8080"
+    networks:
+      - flaskservice
+    command: sh -c "cd ui && npm run serve"
 networks:
   flaskservice:
     driver: bridge
