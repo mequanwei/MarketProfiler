@@ -154,7 +154,7 @@ def update_market_price(ids=[]):
     sqlite_client = sqlite3.connect('data/data.db')
     cursor = sqlite_client.cursor()
     if not ids:
-        data = cursor.execute("SELECT type_id from items").fetchall()
+        data = cursor.execute("SELECT type_id from items where use = 1").fetchall()
         ids = [item[0] for item in data] 
     
     station_json = cursor.execute('''select value from kv_data where key = "station_id"''').fetchone()[0]
@@ -180,7 +180,7 @@ def update_adjust_price():
     adjusted_price = [(float(item["adjusted_price"]),int(item["type_id"])) for item in adjust_price_data if "adjusted_price" in item]
     # 将价格更新到调整价格表
     for item in adjusted_price:
-        g.sqlite_client.cursor().execute('''update items set adjusted_price = ?  where type_id = ? ''',item)
+        g.sqlite_client.cursor().execute('''update items set adjusted_price = ?  where type_id = ? and use = 1''',item)
     g.sqlite_client.commit()
 
 @industrial.route('/update_all_network_data/')
@@ -207,7 +207,7 @@ def preload_data() -> None:
     items = cursor.execute("""
         SELECT type_id, jita_buy_price, jita_sell_price, home_buy_price, home_sell_price,
                name, category, volume, adjusted_price
-        FROM items
+        FROM items where use = 1
     """).fetchall()
     for row in items:
         item_cache[row[0]] = {
@@ -387,10 +387,11 @@ def get_material_cost(
 
     build_type = "Build"
     buy_loc = ""
-    if total_cost > market_price:
-        total_cost = market_price
-        build_type = "Buy"
-        buy_loc = market_price_loc
+    if manual_build_type != "build":
+        if total_cost > market_price:
+            total_cost = market_price
+            build_type = "Buy"
+            buy_loc = market_price_loc
 
 
     time_data = time_cache.get(product_id)
@@ -432,7 +433,7 @@ def update_build_cost(params):
     item_cache,materials_cache,manual_price_cache,time_cache = preload_data()
     db_cache =(item_cache,materials_cache,manual_price_cache,time_cache) 
     cursor = g.sqlite_client.cursor()
-    items = cursor.execute('''select type_id from items''').fetchall()
+    items = cursor.execute('''select type_id from items where use = 1''').fetchall()
 
     id = [item[0] for item in items]
     result = []
@@ -456,12 +457,14 @@ def update_build_cost_api():
     
 @industrial.route('/marketprofile/')
 def market_profile_api():
-    items = g.sqlite_client.cursor().execute('''select * from items''').fetchall()
+    items = g.sqlite_client.cursor().execute('''select * from items where use = 1''').fetchall()
     result = []
     for item in items:
         try:
-            type_id,name,category,_, build_cost,_,home_buy_price,home_sell_price,home_7d_movement,home_7d_capacity,jita_buy_price,jita_sell_price,jita_7d_movement,jita_7d_capacity,_  = item 
+            type_id,name,category,_, build_cost,_,home_buy_price,home_sell_price,home_7d_movement,home_7d_capacity,jita_buy_price,jita_sell_price,jita_7d_movement,jita_7d_capacity,_,_  = item 
             if home_7d_capacity < 100000000 :
+                continue
+            if jita_sell_price and home_sell_price < 1000000 :
                 continue
             margin_p = (home_sell_price - build_cost) / build_cost
             if margin_p > 0:
@@ -474,7 +477,7 @@ def market_profile_api():
     result_new=[]
     for i in result:
         margin_p = i["margin_p"]
-        type_id,name,category,_, build_cost,_,home_buy_price,home_sell_price,home_7d_movement,home_7d_capacity,jita_buy_price,jita_sell_price,jita_7d_movement,jita_7d_capacity,_  = i["details"]
+        type_id,name,category,_, build_cost,_,home_buy_price,home_sell_price,home_7d_movement,home_7d_capacity,jita_buy_price,jita_sell_price,jita_7d_movement,jita_7d_capacity,_,_  = i["details"]
         d = {}
         d["typeID"] = type_id
         d["name"] = name
