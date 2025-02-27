@@ -4,7 +4,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/backend': {
-        target: 'http://10.1.9.74:5000',
+        target: 'http://web:5000',
         changeOrigin: true,
         pathRewrite: {
           '^/backend': ''
