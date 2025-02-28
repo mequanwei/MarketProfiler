@@ -90,36 +90,6 @@ def get_modifier_info():
         "reactions": 5,}
     return  calc_modifier(structure,skill)
 
-def get_item_name(id):
-    res = g.sqlite_client.cursor().execute("select typeName from invTypes where typeID = ?",(id,)).fetchone()
-    return res[0]
-
-def get_item_type(id):
-    res = g.sqlite_client.cursor().execute("SELECT invMarketGroups.marketGroupName FROM invTypes JOIN invMarketGroups ON invTypes.marketGroupID = invMarketGroups.marketGroupID WHERE invTypes.typeID = ?; ",(id,)).fetchone()
-    if not res :
-        return "NULL"
-    return res[0]
-
-@industrial.route('/pi/')
-def get_pi_info():
-    '''
-    获取PI的输入
-    '''
-    typeid = request.args.get('typeid')  
-    sql = f"select * from PlanetIndustry where typeid = {typeid}"
-    result = g.sqlite_client.cursor().execute(sql).fetchall()
-    s={}
-    for row in result:
-        if "product_name" not in s:
-            s["product_name"] = get_item_name(row[0])
-            s["input"] = []
-        input={}
-        input["name"] = get_item_name(row[1])
-        input["quantity"] = row[2]
-        input["category"]=get_item_type(row[1])
-        s["input"].append(input)
-    return jsonify(s)
-
      
 def fetch_price_data(location,ids):    
     BASE_URL = f"http://goonmetrics.apps.gnf.lt/api/price_data/?station_id={location}&type_id={{}}"
@@ -404,6 +374,30 @@ def get_material_cost(
     }
     return cache[product_id]
 
+def aggregate_raw_materials(inputs, aggregated=None):
+    """
+    递归遍历 inputs，统计所有原材料（即不含嵌套 inputs 的项），
+    按名称累计其 require_quantity 和 material_cost。
+    """
+    if aggregated is None:
+        aggregated = {}
+    for item in inputs:
+        # 如果存在嵌套的 inputs，则递归处理，不把当前项作为原材料计入
+        if "inputs" in item and item["inputs"]:
+            aggregate_raw_materials(item["inputs"], aggregated)
+        else:
+            # 视为原材料，按名称累计
+            name = item.get("name", "unknown")
+            qty = item.get("require_quantity", 0)
+            cost = item.get("material_cost", 0) * qty
+            if name in aggregated:
+                aggregated[name]["total_quantity"] += qty
+                aggregated[name]["total_cost"] += cost
+            else:
+                aggregated[name] = {"total_quantity": qty, "total_cost": cost}
+    return aggregated
+
+
 def get_product_tree(product_id):
     """
     递归更新所有 `ids` 及其子 ID 的 build_cost
@@ -416,7 +410,12 @@ def get_product_tree(product_id):
     cost_index = get_industry_index(system_name = "CKX-RW")
     cost_manufacturing = cost_index[3]
     cost_reaction = cost_index[6]
-    computed_costs[f"product_{product_id}"] = get_material_cost(product_id, (me,te,cost,cost_manufacturing,cost_reaction), price_type="sell",db_cache = db_cache)
+    cost_json= get_material_cost(product_id, (me,te,cost,cost_manufacturing,cost_reaction), price_type="sell",db_cache = db_cache)
+    
+    # 统计全部原材料
+    materials_summary = aggregate_raw_materials(cost_json["inputs"])
+    cost_json["total"] = materials_summary
+    computed_costs[f"product_{product_id}"]  = cost_json
     return computed_costs
 
 @industrial.route('/get_product_tree/')
@@ -466,6 +465,8 @@ def market_profile_api():
                 continue
             if jita_sell_price and home_sell_price < 1000000 :
                 continue
+            if category <3 or category >8:
+                continue
             margin_p = (home_sell_price - build_cost) / build_cost
             if margin_p > 0:
                 result.append({"margin_p":margin_p,"details":item})
@@ -495,6 +496,35 @@ def market_profile_api():
     return jsonify(result_new)
     
     
+@industrial.route('/marketprofile/')
+def get_item_name(id):
+    res = g.sqlite_client.cursor().execute("select typeName from invTypes where typeID = ?",(id,)).fetchone()
+    return res[0]
 
+def get_item_type(id):
+    res = g.sqlite_client.cursor().execute("SELECT invMarketGroups.marketGroupName FROM invTypes JOIN invMarketGroups ON invTypes.marketGroupID = invMarketGroups.marketGroupID WHERE invTypes.typeID = ?; ",(id,)).fetchone()
+    if not res :
+        return "NULL"
+    return res[0]
+
+@industrial.route('/pi/')
+def get_pi_info():
+    '''
+    获取PI的输入
+    '''
+    typeid = request.args.get('typeid')  
+    sql = f"select * from PlanetIndustry where typeid = {typeid}"
+    result = g.sqlite_client.cursor().execute(sql).fetchall()
+    s={}
+    for row in result:
+        if "product_name" not in s:
+            s["product_name"] = get_item_name(row[0])
+            s["input"] = []
+        input={}
+        input["name"] = get_item_name(row[1])
+        input["quantity"] = row[2]
+        input["category"]=get_item_type(row[1])
+        s["input"].append(input)
+    return jsonify(s)
 
         

@@ -12,9 +12,10 @@
       <h2>Result</h2>
       <!-- 根据 currentView 显示不同的组件 -->
       <ProductTable v-if="currentView === 'BOM'" :products="result" />
+      <TotalTable v-if="currentView === 'BOM'" :result="result" />
       <MarketDataView v-if="currentView === 'MarketData'" :data="result" />
     </div>
-    <div v-if="showUpdateSuccess && currentView === 'UpdateData'" >
+    <div v-if="showUpdateSuccess && currentView === 'UpdateData'" class="success-message">
       更新成功！
     </div>
   </div>
@@ -23,10 +24,11 @@
 <script>
 import ProductTable from './components/ProductTable.vue';
 import MarketDataView from './components/MarketDataView.vue';
+import TotalTable from './components/TotalTable.vue';
 
 export default {
   name: 'App',
-  components: { ProductTable,MarketDataView },
+  components: { ProductTable,MarketDataView, TotalTable},
   data() {
     return {
       name: '',
