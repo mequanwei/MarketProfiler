@@ -224,6 +224,9 @@ class ESIClient:
     def get_adjusted_price(self):
         return self.get('/markets/prices')
     
+    def get_assets(self,c_id,token):
+        return self.get(f'/characters/{c_id}/assets',access_token=token)
+    
 
     def close(self):
         """关闭会话"""

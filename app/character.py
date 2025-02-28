@@ -157,3 +157,11 @@ def get_jobs():
         res.append({c["name"]:job})
     return jsonify(res)
     
+@character.route('assets')
+def get_assets():
+    esi_data = get_esi_token()
+    res = []
+    for c in esi_data['character_info']:
+        asserts = g.esi_client.get_assets(c['uid'],c["access_token"])
+        res.append({c["name"]:asserts})
+    return jsonify(res)
